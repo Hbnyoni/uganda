@@ -1,0 +1,14 @@
+version: 1.2
+workflows:
+  - name: nextflow
+    subclass: NFL
+    primaryDescriptorPath: /nextflow.config
+notebooks:
+  - name: cheaqi_interactive_containerization
+    format: jupyter
+    language: Python
+    path: /notebooks/cheaqi_interactive_containerization.ipynb
+  - name: cheaqi_interactive_processing
+    format: jupyter
+    language: Python
+    path: /notebooks/cheaqi_interactive_processing.ipynb
