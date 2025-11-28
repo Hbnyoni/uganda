@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHEAQI Workflow Monitor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            color: white;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .widget {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .widget h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        
+        .status-online { background-color: #27ae60; }
+        .status-warning { background-color: #f39c12; }
+        .status-offline { background-color: #e74c3c; }
+        
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .metric:last-child {
+            border-bottom: none;
+        }
+        
+        .metric-label {
+            font-weight: 500;
+            color: #34495e;
+        }
+        
+        .metric-value {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 5px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            transition: width 0.3s ease;
+            border-radius: 5px;
+        }
+        
+        .progress-low { background-color: #27ae60; }
+        .progress-medium { background-color: #f39c12; }
+        .progress-high { background-color: #e74c3c; }
+        
+        .workflow-item {
+            padding: 15px;
+            border: 1px solid #ecf0f1;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+        }
+        
+        .workflow-item.running {
+            border-color: #3498db;
+            background: #e3f2fd;
+        }
+        
+        .workflow-item.completed {
+            border-color: #27ae60;
+            background: #e8f5e8;
+        }
+        
+        .workflow-item.failed {
+            border-color: #e74c3c;
+            background: #ffebee;
+        }
+        
+        .log-container {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 200px;
+            margin-top: 15px;
+        }
+        
+        .file-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .file-item {
+            display: flex;
+            justify-content: between;
+            padding: 5px 0;
+            border-bottom: 1px solid #ecf0f1;
+            font-size: 12px;
+        }
+        
+        .file-name {
+            flex: 1;
+            color: #34495e;
+        }
+        
+        .file-size {
+            color: #7f8c8d;
+            margin-left: 10px;
+        }
+        
+        .timestamp {
+            color: #95a5a6;
+            font-size: 11px;
+            text-align: right;
+        }
+        
+        .control-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        
+        .btn-success { background: linear-gradient(135deg, #27ae60, #229954); }
+        .btn-warning { background: linear-gradient(135deg, #f39c12, #e67e22); }
+        .btn-danger { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .updating {
+            animation: pulse 1s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🌍 CHEAQI Real-time Workflow Monitor</h1>
+        <p>Interactive Docker-based Spatial Interpolation System</p>
+        <div style="margin-top: 10px;">
+            <span class="status-indicator" id="connection-status"></span>
+            <span id="connection-text">Connecting...</span>
+            <span style="margin-left: 20px;">Last Update: <span id="last-update">Never</span></span>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- System Resources -->
+        <div class="widget">
+            <h3>💻 System Resources</h3>
+            <div class="metric">
+                <span class="metric-label">CPU Usage</span>
+                <span class="metric-value" id="cpu-usage">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill progress-low" id="cpu-progress" style="width: 0%"></div>
+            </div>
+            
+            <div class="metric">
+                <span class="metric-label">Memory Usage</span>
+                <span class="metric-value" id="memory-usage">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill progress-low" id="memory-progress" style="width: 0%"></div>
+            </div>
+            
+            <div class="metric">
+                <span class="metric-label">Disk Usage</span>
+                <span class="metric-value" id="disk-usage">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill progress-low" id="disk-progress" style="width: 0%"></div>
+            </div>
+            
+            <div class="metric">
+                <span class="metric-label">Load Average</span>
+                <span class="metric-value" id="load-avg">0.00</span>
+            </div>
+        </div>
+        
+        <!-- Docker Containers -->
+        <div class="widget">
+            <h3>🐳 Docker Containers</h3>
+            <div id="docker-containers">
+                <p style="color: #7f8c8d; text-align: center; padding: 20px;">Loading container status...</p>
+            </div>
+        </div>
+        
+        <!-- Active Workflows -->
+        <div class="widget">
+            <h3>⚡ Active Workflows</h3>
+            <div class="metric">
+                <span class="metric-label">Nextflow Processes</span>
+                <span class="metric-value" id="workflow-count">0</span>
+            </div>
+            <div id="workflow-list">
+                <p style="color: #7f8c8d; text-align: center; padding: 20px;">No active workflows</p>
+            </div>
+            
+            <div class="control-buttons">
+                <button class="btn" onclick="refreshStatus()">🔄 Refresh</button>
+                <button class="btn btn-success" onclick="window.open('http://localhost:8888', '_blank')">🌐 Web Interface</button>
+            </div>
+        </div>
+        
+        <!-- File Activity -->
+        <div class="widget">
+            <h3>📁 File Activity</h3>
+            <div class="metric">
+                <span class="metric-label">Input Files</span>
+                <span class="metric-value" id="input-count">0</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">Output Files</span>
+                <span class="metric-value" id="output-count">0</span>
+            </div>
+            
+            <h4 style="margin: 15px 0 10px 0; color: #34495e;">Recent Outputs</h4>
+            <div class="file-list" id="recent-files">
+                <p style="color: #7f8c8d; text-align: center; padding: 20px;">No recent files</p>
+            </div>
+        </div>
+        
+        <!-- Resource Usage Chart -->
+        <div class="widget">
+            <h3>📊 Resource Trends</h3>
+            <div class="chart-container">
+                <canvas id="resourceChart"></canvas>
+            </div>
+        </div>
+        
+        <!-- Recent Logs -->
+        <div class="widget">
+            <h3>📋 System Logs</h3>
+            <div class="log-container" id="log-output">
+                <div style="color: #3498db;">[INFO] CHEAQI Monitor started</div>
+                <div style="color: #27ae60;">[SUCCESS] Connected to monitoring service</div>
+                <div style="color: #f39c12;">[WAITING] Monitoring for workflow activity...</div>
+            </div>
+            
+            <div class="control-buttons">
+                <button class="btn btn-warning" onclick="clearLogs()">🗑️ Clear Logs</button>
+                <button class="btn" onclick="downloadLogs()">💾 Download Logs</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Initialize Socket.IO connection
+        const socket = io();
+        
+        // Chart setup
+        const ctx = document.getElementById('resourceChart').getContext('2d');
+        const resourceChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'CPU %',
+                    data: [],
+                    borderColor: '#3498db',
+                    backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                    tension: 0.4
+                }, {
+                    label: 'Memory %',
+                    data: [],
+                    borderColor: '#e74c3c',
+                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
+                }
+            }
+        });
+        
+        // Data storage for chart
+        const maxDataPoints = 20;
+        
+        // Socket event handlers
+        socket.on('connect', function() {
+            updateConnectionStatus(true);
+            addLog('[SUCCESS] Connected to monitoring service', 'success');
+        });
+        
+        socket.on('disconnect', function() {
+            updateConnectionStatus(false);
+            addLog('[ERROR] Disconnected from monitoring service', 'error');
+        });
+        
+        socket.on('status_update', function(data) {
+            updateSystemMetrics(data.system);
+            updateWorkflowStatus(data.workflows);
+            updateFileStatus(data.processes);
+            updateLastUpdate(data.timestamp);
+            updateChart(data.system);
+        });
+        
+        function updateConnectionStatus(connected) {
+            const indicator = document.getElementById('connection-status');
+            const text = document.getElementById('connection-text');
+            
+            if (connected) {
+                indicator.className = 'status-indicator status-online';
+                text.textContent = 'Connected';
+            } else {
+                indicator.className = 'status-indicator status-offline';
+                text.textContent = 'Disconnected';
+            }
+        }
+        
+        function updateSystemMetrics(system) {
+            if (!system) return;
+            
+            // CPU
+            const cpuPercent = system.cpu?.percent || 0;
+            document.getElementById('cpu-usage').textContent = `${cpuPercent.toFixed(1)}%`;
+            updateProgressBar('cpu-progress', cpuPercent);
+            
+            // Memory
+            const memPercent = system.memory?.percent || 0;
+            document.getElementById('memory-usage').textContent = `${memPercent.toFixed(1)}%`;
+            updateProgressBar('memory-progress', memPercent);
+            
+            // Disk
+            const diskPercent = system.disk?.percent || 0;
+            document.getElementById('disk-usage').textContent = `${diskPercent.toFixed(1)}%`;
+            updateProgressBar('disk-progress', diskPercent);
+            
+            // Load average
+            const loadAvg = system.load_average ? system.load_average[0].toFixed(2) : '0.00';
+            document.getElementById('load-avg').textContent = loadAvg;
+            
+            // Docker containers
+            updateDockerContainers(system.docker);
+        }
+        
+        function updateProgressBar(elementId, percent) {
+            const element = document.getElementById(elementId);
+            element.style.width = `${Math.min(percent, 100)}%`;
+            
+            // Update color based on usage
+            element.className = 'progress-fill';
+            if (percent < 50) {
+                element.classList.add('progress-low');
+            } else if (percent < 80) {
+                element.classList.add('progress-medium');
+            } else {
+                element.classList.add('progress-high');
+            }
+        }
+        
+        function updateDockerContainers(containers) {
+            const containerDiv = document.getElementById('docker-containers');
+            
+            if (!containers || containers.length === 0) {
+                containerDiv.innerHTML = '<p style="color: #7f8c8d; text-align: center; padding: 20px;">No containers running</p>';
+                return;
+            }
+            
+            let html = '';
+            containers.forEach(container => {
+                html += `
+                    <div class="workflow-item running">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <strong>${container.name}</strong>
+                            <span style="font-size: 12px; color: #3498db;">${container.cpu}</span>
+                        </div>
+                        <div style="font-size: 12px; color: #7f8c8d; margin-top: 5px;">
+                            Memory: ${container.memory_usage} (${container.memory_percent})
+                        </div>
+                    </div>
+                `;
+            });
+            
+            containerDiv.innerHTML = html;
+        }
+        
+        function updateWorkflowStatus(workflows) {
+            if (!workflows) return;
+            
+            const workflowCount = workflows.active_count || 0;
+            document.getElementById('workflow-count').textContent = workflowCount;
+            
+            const workflowList = document.getElementById('workflow-list');
+            
+            if (workflowCount === 0 && (!workflows.nextflow_processes || workflows.nextflow_processes.length === 0)) {
+                workflowList.innerHTML = '<p style="color: #7f8c8d; text-align: center; padding: 20px;">No active workflows</p>';
+                return;
+            }
+            
+            let html = '';
+            
+            if (workflows.nextflow_processes) {
+                workflows.nextflow_processes.forEach(proc => {
+                    const runtime = new Date() - new Date(proc.started);
+                    const runtimeStr = formatDuration(runtime);
+                    
+                    html += `
+                        <div class="workflow-item running">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <strong>PID ${proc.pid}</strong>
+                                <span style="font-size: 12px; color: #3498db;">CPU: ${proc.cpu_percent.toFixed(1)}%</span>
+                            </div>
+                            <div style="font-size: 12px; color: #7f8c8d; margin-top: 5px;">
+                                Runtime: ${runtimeStr} | Memory: ${proc.memory_percent.toFixed(1)}%
+                            </div>
+                            <div style="font-size: 11px; color: #95a5a6; margin-top: 3px;">
+                                ${proc.cmdline}
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            
+            workflowList.innerHTML = html || '<p style="color: #7f8c8d; text-align: center; padding: 20px;">No active processes</p>';
+        }
+        
+        function updateFileStatus(processes) {
+            if (!processes || !processes.file_stats) return;
+            
+            const fileStats = processes.file_stats;
+            
+            // Update counters
+            if (fileStats.input_files) {
+                document.getElementById('input-count').textContent = fileStats.input_files.count;
+            }
+            
+            if (fileStats.output_files) {
+                document.getElementById('output-count').textContent = fileStats.output_files.count;
+                
+                // Update recent files list
+                const recentFilesDiv = document.getElementById('recent-files');
+                
+                if (fileStats.output_files.recent_files && fileStats.output_files.recent_files.length > 0) {
+                    let html = '';
+                    fileStats.output_files.recent_files.forEach(file => {
+                        const size = formatBytes(file.size);
+                        const time = new Date(file.modified).toLocaleTimeString();
+                        
+                        html += `
+                            <div class="file-item">
+                                <div class="file-name">${file.name}</div>
+                                <div class="file-size">${size}</div>
+                                <div class="timestamp">${time}</div>
+                            </div>
+                        `;
+                    });
+                    recentFilesDiv.innerHTML = html;
+                } else {
+                    recentFilesDiv.innerHTML = '<p style="color: #7f8c8d; text-align: center; padding: 20px;">No recent files</p>';
+                }
+            }
+        }
+        
+        function updateChart(system) {
+            if (!system || !system.cpu || !system.memory) return;
+            
+            const now = new Date().toLocaleTimeString();
+            
+            // Add new data point
+            resourceChart.data.labels.push(now);
+            resourceChart.data.datasets[0].data.push(system.cpu.percent);
+            resourceChart.data.datasets[1].data.push(system.memory.percent);
+            
+            // Remove old data points
+            if (resourceChart.data.labels.length > maxDataPoints) {
+                resourceChart.data.labels.shift();
+                resourceChart.data.datasets[0].data.shift();
+                resourceChart.data.datasets[1].data.shift();
+            }
+            
+            resourceChart.update('none');
+        }
+        
+        function updateLastUpdate(timestamp) {
+            const time = new Date(timestamp).toLocaleTimeString();
+            document.getElementById('last-update').textContent = time;
+        }
+        
+        function addLog(message, type = 'info') {
+            const logOutput = document.getElementById('log-output');
+            const now = new Date().toLocaleTimeString();
+            
+            let color = '#ecf0f1';
+            switch (type) {
+                case 'success': color = '#27ae60'; break;
+                case 'warning': color = '#f39c12'; break;
+                case 'error': color = '#e74c3c'; break;
+                case 'info': color = '#3498db'; break;
+            }
+            
+            const logEntry = document.createElement('div');
+            logEntry.style.color = color;
+            logEntry.textContent = `[${now}] ${message}`;
+            
+            logOutput.appendChild(logEntry);
+            logOutput.scrollTop = logOutput.scrollHeight;
+            
+            // Keep only last 50 log entries
+            while (logOutput.children.length > 50) {
+                logOutput.removeChild(logOutput.firstChild);
+            }
+        }
+        
+        function refreshStatus() {
+            socket.emit('request_update');
+            addLog('[INFO] Manual refresh requested', 'info');
+        }
+        
+        function clearLogs() {
+            document.getElementById('log-output').innerHTML = '';
+            addLog('[INFO] Logs cleared', 'info');
+        }
+        
+        function downloadLogs() {
+            const logs = document.getElementById('log-output').textContent;
+            const blob = new Blob([logs], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `cheaqi-monitor-logs-${new Date().toISOString().slice(0,19).replace(/:/g,'-')}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            addLog('[INFO] Logs downloaded', 'info');
+        }
+        
+        // Utility functions
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        function formatDuration(ms) {
+            const seconds = Math.floor(ms / 1000);
+            const minutes = Math.floor(seconds / 60);
+            const hours = Math.floor(minutes / 60);
+            
+            if (hours > 0) {
+                return `${hours}h ${minutes % 60}m`;
+            } else if (minutes > 0) {
+                return `${minutes}m ${seconds % 60}s`;
+            } else {
+                return `${seconds}s`;
+            }
+        }
+        
+        // Initialize
+        addLog('[INFO] CHEAQI Monitor dashboard loaded', 'info');
+    </script>
+</body>
+</html>

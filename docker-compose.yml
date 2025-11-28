@@ -1,0 +1,114 @@
+﻿version: '3.8'
+
+services:
+  uganda-spatial-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: uganda-spatial-web
+    ports:
+      - "8888:8888"  # Flask web interface for Uganda workflow
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+      - ./scripts:/app/scripts
+      - ./templates:/app/templates
+      - ./uganda_workflow.nf:/app/uganda_workflow.nf
+      - ./uganda.config:/app/uganda.config
+    environment:
+      - PYTHONUNBUFFERED=1
+      - UGANDA_WORKFLOW=true
+    restart: unless-stopped
+    networks:
+      - uganda-network
+
+  # Uganda spatial interpolation processor
+  uganda-processor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: uganda-processor
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+      - ./scripts:/app/scripts
+      - ./uganda_workflow.nf:/app/uganda_workflow.nf
+      - ./uganda.config:/app/uganda.config
+    environment:
+      - PYTHONUNBUFFERED=1
+      - UGANDA_WORKFLOW=true
+    command: >
+      bash -c "
+        source activate cheaqi &&
+        echo 'Uganda spatial processor ready. Use: docker exec uganda-processor nextflow run uganda_workflow.nf -c uganda.config' &&
+        tail -f /dev/null
+      "
+    restart: unless-stopped
+    networks:
+      - uganda-network
+    profiles:
+      - batch
+
+  # Uganda workflow monitor
+  uganda-monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: uganda-monitor
+    ports:
+      - "8890:8890"  # Uganda monitoring dashboard
+    volumes:
+      - ./data:/app/data:ro
+      - ./outputs:/app/outputs:ro
+      - ./scripts:/app/scripts:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /tmp:/tmp:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+      - MONITOR_MODE=true
+      - UGANDA_WORKFLOW=true
+    depends_on:
+      - uganda-spatial-web
+    command: >
+      bash -c "
+        source activate cheaqi &&
+        echo 'Starting Uganda Spatial Analysis Monitor...' &&
+        echo 'Monitor Dashboard: http://localhost:8890' &&
+        echo 'Monitoring Uganda workflow and system resources...' &&
+        cd /app &&
+        pip install flask-socketio psutil &&
+        python monitor.py
+      "
+    restart: unless-stopped
+    networks:
+      - uganda-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8890/api/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Uganda results file server
+  uganda-file-server:
+    image: nginx:alpine
+    container_name: uganda-file-server
+    ports:
+      - "8080:80"
+    volumes:
+      - ./outputs:/usr/share/nginx/html/outputs:ro
+      - ./data:/usr/share/nginx/html/data:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    restart: unless-stopped
+    networks:
+      - uganda-network
+    profiles:
+      - fileserver
+
+networks:
+  uganda-network:
+    driver: bridge
+
+volumes:
+  uganda-data:
+  uganda-outputs:

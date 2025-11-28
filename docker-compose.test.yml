@@ -1,0 +1,30 @@
+version: '3.8'
+
+# Test configuration - builds quickly without full dependency stack
+services:
+  cheaqi-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    container_name: cheaqi-test-container
+    ports:
+      - "8889:8888"
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs  
+      - ./notebooks:/app/notebooks
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - PYTHONUNBUFFERED=1
+    command: >
+      bash -c "
+        echo 'CHEAQI Test Container Started Successfully!' &&
+        echo 'Python version:' && python --version &&
+        echo 'Available packages:' && pip list | head -20 &&
+        echo 'Test container ready. Access at http://localhost:8889' &&
+        tail -f /dev/null
+      "
+
+networks:
+  default:
+    name: cheaqi-test-network

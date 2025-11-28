@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variable Explorer - {{ filename }}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+        
+        .section h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .coordinates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .coord-option {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .coord-option:hover {
+            border-color: #3498db;
+            transform: translateY(-2px);
+        }
+        
+        .coord-option.selected {
+            border-color: #27ae60;
+            background: #d5f4e6;
+        }
+        
+        .coord-option .name {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .coord-option .details {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .variables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 15px;
+            max-height: 600px;
+            overflow-y: auto;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+        }
+        
+        .variable-card {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: #fafafa;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .variable-card:hover {
+            border-color: #3498db;
+            transform: translateY(-2px);
+        }
+        
+        .variable-card.selected {
+            border-color: #27ae60;
+            background: #d5f4e6;
+        }
+        
+        .variable-card.not-suitable {
+            opacity: 0.6;
+            border-color: #e74c3c;
+        }
+        
+        .variable-card .variable-name {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .variable-card .variable-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            font-size: 11px;
+            color: #555;
+            margin-bottom: 8px;
+        }
+        
+        .variable-card .variable-stats span {
+            background: #ecf0f1;
+            padding: 2px 6px;
+            border-radius: 10px;
+        }
+        
+        .variable-card .variable-range {
+            font-size: 11px;
+            color: #666;
+            font-family: monospace;
+            background: #f0f0f0;
+            padding: 4px;
+            border-radius: 4px;
+        }
+        
+        .variable-card .suitability {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 16px;
+        }
+        
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .filter-group label {
+            font-weight: bold;
+            color: #34495e;
+        }
+        
+        .filter-group select, .filter-group input {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .selection-summary {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .selection-summary h4 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        
+        .selected-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .selected-item {
+            background: #4caf50;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        .selected-item:hover {
+            background: #f44336;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-success { background: linear-gradient(135deg, #27ae60, #229954); }
+        .btn-warning { background: linear-gradient(135deg, #f39c12, #e67e22); }
+        .btn-secondary { background: linear-gradient(135deg, #95a5a6, #7f8c8d); }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        .stats-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        
+        .stat-card .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #3498db;
+        }
+        
+        .stat-card .label {
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 Variable Explorer</h1>
+            <p>Explore and select variables for spatial interpolation: {{ filename }}</p>
+        </div>
+        
+        <div class="content">
+            <a href="/" class="back-link">← Back to file selection</a>
+            
+            <div id="loading" style="text-align: center; padding: 40px;">
+                <div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
+                <p>Loading variable data...</p>
+            </div>
+            
+            <div id="content-area" style="display: none;">
+                <div class="stats-summary" id="stats-summary">
+                    <!-- Stats will be loaded here -->
+                </div>
+                
+                <div class="section">
+                    <h3>📍 1. Select Coordinate Columns</h3>
+                    <div class="coordinates-grid" id="coordinates-grid">
+                        <!-- Coordinate options will be loaded here -->
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>📊 2. Select Variables for Interpolation</h3>
+                    
+                    <div class="filters">
+                        <div class="filter-group">
+                            <label>Filter:</label>
+                            <select id="filter-type">
+                                <option value="all">All Variables</option>
+                                <option value="suitable">Suitable for Interpolation</option>
+                                <option value="numeric">Numeric Only</option>
+                                <option value="environmental">Environmental (NDVI, LST, etc.)</option>
+                                <option value="meteorological">Meteorological (T2M, TP, etc.)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>Min Data Points:</label>
+                            <input type="number" id="min-points" value="10" min="1" max="1000">
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>Search:</label>
+                            <input type="text" id="search-box" placeholder="Search variables...">
+                        </div>
+                        
+                        <button class="btn btn-secondary" onclick="selectAll()">Select All Suitable</button>
+                        <button class="btn btn-secondary" onclick="clearSelection()">Clear All</button>
+                    </div>
+                    
+                    <div class="selection-summary">
+                        <h4>Selected Variables (<span id="selected-count">0</span>):</h4>
+                        <div class="selected-list" id="selected-list"></div>
+                    </div>
+                    
+                    <div class="variables-grid" id="variables-grid">
+                        <!-- Variables will be loaded here -->
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-success" onclick="runInterpolation()">🗺️ Run Single Interpolation</button>
+                    <button class="btn btn-warning" onclick="runNextflowWorkflow()">⚡ Run Nextflow Batch</button>
+                    <button class="btn" onclick="validateSelection()">✅ Validate Selection</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    
+    <script>
+        let variableData = {};
+        let selectedVariables = new Set();
+        let selectedLatColumn = null;
+        let selectedLonColumn = null;
+        const filename = '{{ filename }}';
+        
+        // Load variable data on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadVariableData();
+        });
+        
+        function loadVariableData() {
+            fetch(`/api/get_all_variables/${filename}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert('Error loading data: ' + data.error);
+                        return;
+                    }
+                    
+                    variableData = data;
+                    populateInterface();
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('content-area').style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to load variable data');
+                });
+        }
+        
+        function populateInterface() {
+            populateStats();
+            populateCoordinates();
+            populateVariables();
+            setupFilters();
+        }
+        
+        function populateStats() {
+            const statsHtml = `
+                <div class="stat-card">
+                    <div class="number">${variableData.total_rows.toLocaleString()}</div>
+                    <div class="label">Total Rows</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">${variableData.variables.length}</div>
+                    <div class="label">Total Variables</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">${variableData.numeric_variables.length}</div>
+                    <div class="label">Suitable for Interpolation</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">${variableData.coordinate_columns.length}</div>
+                    <div class="label">Coordinate Columns</div>
+                </div>
+            `;
+            document.getElementById('stats-summary').innerHTML = statsHtml;
+        }
+        
+        function populateCoordinates() {
+            const coordGrid = document.getElementById('coordinates-grid');
+            coordGrid.innerHTML = '';
+            
+            // Add coordinate columns
+            variableData.coordinate_columns.forEach(coord => {
+                const coordDiv = document.createElement('div');
+                coordDiv.className = 'coord-option';
+                coordDiv.onclick = () => selectCoordinate(coord.name, coord.type, coordDiv);
+                
+                coordDiv.innerHTML = `
+                    <div class="name">${coord.name} (${coord.type})</div>
+                    <div class="details">Range: ${coord.range[0]} to ${coord.range[1]}</div>
+                `;
+                
+                coordGrid.appendChild(coordDiv);
+                
+                // Auto-select obvious coordinates
+                if (coord.type === 'latitude') {
+                    selectCoordinate(coord.name, coord.type, coordDiv);
+                } else if (coord.type === 'longitude') {
+                    selectCoordinate(coord.name, coord.type, coordDiv);
+                }
+            });
+        }
+        
+        function selectCoordinate(name, type, element) {
+            // Remove previous selection of this type
+            if (type.includes('lat') || type === 'coordinate') {
+                document.querySelectorAll('.coord-option.lat-selected').forEach(el => {
+                    el.classList.remove('selected', 'lat-selected');
+                });
+                selectedLatColumn = name;
+                element.classList.add('selected', 'lat-selected');
+            }
+            
+            if (type.includes('lon') || type === 'coordinate') {
+                document.querySelectorAll('.coord-option.lon-selected').forEach(el => {
+                    el.classList.remove('selected', 'lon-selected');
+                });
+                selectedLonColumn = name;
+                element.classList.add('selected', 'lon-selected');
+            }
+        }
+        
+        function populateVariables() {
+            const variablesGrid = document.getElementById('variables-grid');
+            variablesGrid.innerHTML = '';
+            
+            variableData.variables.forEach(variable => {
+                if (!variable.is_numeric) return; // Only show numeric variables
+                
+                const isSuitable = variable.suitable_for_interpolation;
+                const isCoordinate = variableData.coordinate_columns.some(c => c.name === variable.name);
+                
+                if (isCoordinate) return; // Don't show coordinate columns as variables
+                
+                const variableDiv = document.createElement('div');
+                variableDiv.className = `variable-card ${isSuitable ? '' : 'not-suitable'}`;
+                variableDiv.dataset.variable = variable.name;
+                variableDiv.onclick = () => toggleVariable(variable.name, variableDiv);
+                
+                const suitabilityIcon = isSuitable ? '✅' : '⚠️';
+                const range = variable.min_value !== undefined ? 
+                    `${variable.min_value} - ${variable.max_value}` : 'N/A';
+                
+                variableDiv.innerHTML = `
+                    <div class="suitability">${suitabilityIcon}</div>
+                    <div class="variable-name">${variable.name}</div>
+                    <div class="variable-stats">
+                        <span>📊 ${variable.non_null_count} points</span>
+                        <span>📉 ${variable.null_percentage}% missing</span>
+                        <span>🔢 ${variable.unique_values} unique</span>
+                        <span>📈 ${variable.type}</span>
+                    </div>
+                    <div class="variable-range">${range}</div>
+                `;
+                
+                variablesGrid.appendChild(variableDiv);
+            });
+        }
+        
+        function toggleVariable(variableName, element) {
+            if (selectedVariables.has(variableName)) {
+                selectedVariables.delete(variableName);
+                element.classList.remove('selected');
+            } else {
+                selectedVariables.add(variableName);
+                element.classList.add('selected');
+            }
+            updateSelectionSummary();
+        }
+        
+        function updateSelectionSummary() {
+            const count = selectedVariables.size;
+            document.getElementById('selected-count').textContent = count;
+            
+            const listDiv = document.getElementById('selected-list');
+            listDiv.innerHTML = '';
+            
+            selectedVariables.forEach(variable => {
+                const item = document.createElement('div');
+                item.className = 'selected-item';
+                item.textContent = variable;
+                item.title = 'Click to remove';
+                item.onclick = () => {
+                    selectedVariables.delete(variable);
+                    updateSelectionSummary();
+                    document.querySelector(`[data-variable="${variable}"]`).classList.remove('selected');
+                };
+                listDiv.appendChild(item);
+            });
+        }
+        
+        function setupFilters() {
+            const filterType = document.getElementById('filter-type');
+            const minPoints = document.getElementById('min-points');
+            const searchBox = document.getElementById('search-box');
+            
+            [filterType, minPoints, searchBox].forEach(element => {
+                element.addEventListener('change', applyFilters);
+                element.addEventListener('input', applyFilters);
+            });
+        }
+        
+        function applyFilters() {
+            const filterType = document.getElementById('filter-type').value;
+            const minPoints = parseInt(document.getElementById('min-points').value);
+            const searchTerm = document.getElementById('search-box').value.toLowerCase();
+            
+            document.querySelectorAll('.variable-card').forEach(card => {
+                const variableName = card.dataset.variable;
+                const variable = variableData.variables.find(v => v.name === variableName);
+                
+                let show = true;
+                
+                // Filter by type
+                if (filterType === 'suitable' && !variable.suitable_for_interpolation) show = false;
+                if (filterType === 'environmental' && !variableName.match(/NDVI|NDBI|NDWI|SAVI|MSAVI|GCI|ARVI|EVI|LST|ET/i)) show = false;
+                if (filterType === 'meteorological' && !variableName.match(/T2M|TP|DEW|MSLP|SP|BLH|U10|V10|SSR|WS|WD10|RH/i)) show = false;
+                
+                // Filter by minimum points
+                if (variable.non_null_count < minPoints) show = false;
+                
+                // Filter by search term
+                if (searchTerm && !variableName.toLowerCase().includes(searchTerm)) show = false;
+                
+                card.style.display = show ? 'block' : 'none';
+            });
+        }
+        
+        function selectAll() {
+            document.querySelectorAll('.variable-card:not(.not-suitable)').forEach(card => {
+                if (card.style.display !== 'none') {
+                    const variableName = card.dataset.variable;
+                    selectedVariables.add(variableName);
+                    card.classList.add('selected');
+                }
+            });
+            updateSelectionSummary();
+        }
+        
+        function clearSelection() {
+            selectedVariables.clear();
+            document.querySelectorAll('.variable-card.selected').forEach(card => {
+                card.classList.remove('selected');
+            });
+            updateSelectionSummary();
+        }
+        
+        function validateSelection() {
+            let errors = [];
+            
+            if (!selectedLatColumn) errors.push('❌ Please select a latitude column');
+            if (!selectedLonColumn) errors.push('❌ Please select a longitude column');
+            if (selectedVariables.size === 0) errors.push('❌ Please select at least one variable');
+            if (selectedLatColumn === selectedLonColumn) errors.push('❌ Latitude and longitude must be different');
+            
+            if (errors.length > 0) {
+                alert(errors.join('\\n'));
+                return false;
+            }
+            
+            alert(`✅ Selection valid!\\n\\nCoordinates: ${selectedLatColumn}, ${selectedLonColumn}\\nVariables: ${Array.from(selectedVariables).join(', ')}\\n\\nReady for interpolation!`);
+            return true;
+        }
+        
+        function runInterpolation() {
+            if (!validateSelection()) return;
+            
+            const config = {
+                filename: filename,
+                lat_column: selectedLatColumn,
+                lon_column: selectedLonColumn,
+                variables: Array.from(selectedVariables),
+                method: 'kriging',
+                resolution: 100
+            };
+            
+            if (confirm(`🚀 Run spatial interpolation?\n\nThis will process ${selectedVariables.size} variables using ${config.method} method.\n\nVariables: ${Array.from(selectedVariables).join(', ')}`)) {
+                // Show loading indicator
+                const button = event.target;
+                const originalText = button.innerHTML;
+                button.innerHTML = '🔄 Processing...';
+                button.disabled = true;
+                
+                // Send to interpolation API
+                fetch('/api/run_interpolation', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(config)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                    
+                    if (data.status === 'completed') {
+                        let message = `✅ Interpolation completed successfully!\n\n`;
+                        message += `📊 Results Summary:\n`;
+                        
+                        let successCount = 0;
+                        let failCount = 0;
+                        
+                        Object.entries(data.results).forEach(([variable, result]) => {
+                            if (result.status === 'success') {
+                                successCount++;
+                                message += `  ✅ ${variable}: ${result.n_points} points processed\n`;
+                            } else {
+                                failCount++;
+                                message += `  ❌ ${variable}: ${result.error || 'Failed'}\n`;
+                            }
+                        });
+                        
+                        message += `\n📂 Output files: ${data.output_files.length} created\n`;
+                        message += `📈 Success rate: ${successCount}/${successCount + failCount}`;
+                        
+                        alert(message);
+                    } else {
+                        alert(`❌ Interpolation failed: ${data.error}`);
+                    }
+                })
+                .catch(error => {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                    console.error('Error:', error);
+                    alert(`❌ Network error: ${error}`);
+                });
+            }
+        }
+        
+        function runNextflowWorkflow() {
+            if (!validateSelection()) return;
+            
+            const config = {
+                filename: filename,
+                variables: Array.from(selectedVariables),
+                lat_column: selectedLatColumn,
+                lon_column: selectedLonColumn,
+                method: 'kriging',
+                resolution: 100,
+                cross_validation: true
+            };
+            
+            if (confirm(`Run Nextflow batch workflow?\\n\\nThis will process ${selectedVariables.size} variables in parallel.\\n\\nVariables: ${Array.from(selectedVariables).join(', ')}`)) {
+                // Send to Nextflow API
+                fetch('/api/run_nextflow', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(config)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert(`✅ Nextflow workflow started successfully!\\n\\nWorkflow ID: ${data.workflow_id}\\n\\nCheck the outputs directory for results.`);
+                    } else {
+                        alert(`❌ Workflow failed: ${data.error}`);
+                    }
+                })
+                .catch(error => {
+                    alert(`Error: ${error}`);
+                });
+            }
+        }
+    </script>
+</body>
+</html>

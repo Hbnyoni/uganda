@@ -1,0 +1,36 @@
+{
+  "description": "CHEAQI Spatial Interpolation Configuration",
+  "default_settings": {
+    "lon_col": "longitude",
+    "lat_col": "latitude", 
+    "date_col": "date",
+    "method": "gdal_grid",
+    "cell_size": 1000.0,
+    "power": 2.0,
+    "jobs": 4
+  },
+  "sample_configurations": {
+    "air_quality": {
+      "variables": ["pm25", "pm10", "no2", "o3"],
+      "method": "python_idw_kdtree",
+      "cell_size": 500.0,
+      "power": 2.0
+    },
+    "water_quality": {
+      "variables": ["ph", "dissolved_oxygen", "turbidity", "temperature"],
+      "method": "pykrige_ok",
+      "cell_size": 100.0
+    },
+    "meteorological": {
+      "variables": ["temperature", "humidity", "precipitation", "wind_speed"],
+      "method": "gdal_grid", 
+      "cell_size": 1000.0,
+      "power": 1.5
+    }
+  },
+  "column_mappings": {
+    "longitude_variants": ["lon", "longitude", "x", "lng"],
+    "latitude_variants": ["lat", "latitude", "y"],
+    "date_variants": ["date", "datetime", "timestamp", "time"]
+  }
+}

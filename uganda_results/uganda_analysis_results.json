@@ -1,0 +1,356 @@
+{
+  "analysis_date": "2025-11-27T14:31:45.876020",
+  "total_records": 18096,
+  "variables_analyzed": [
+    "NDVI",
+    "pm25",
+    "no2",
+    "WRND",
+    "EH",
+    "EM",
+    "T2M",
+    "RH",
+    "LST",
+    "ET",
+    "TP",
+    "BLH"
+  ],
+  "results": {
+    "NDVI": {
+      "data_points": 17831,
+      "date_range": {
+        "start": "2022-01-01T00:00:00",
+        "end": "2022-12-31T00:00:00"
+      },
+      "spatial_coverage": {
+        "lat_range": [
+          0.2182,
+          0.4053
+        ],
+        "lon_range": [
+          32.516,
+          32.6778
+        ]
+      },
+      "value_stats": {
+        "mean": 0.13226629379608545,
+        "std": 0.14659318783378245,
+        "min": -0.103415558,
+        "max": 0.732644224,
+        "median": 0.100125742
+      },
+      "plots_created": [
+        "uganda_NDVI_timeseries.png",
+        "uganda_NDVI_spatial.png"
+      ]
+    },
+    "pm25": {
+      "data_points": 18095,
+      "date_range": {
+        "start": "2022-01-01T00:00:00",
+        "end": "2022-12-31T00:00:00"
+      },
+      "spatial_coverage": {
+        "lat_range": [
+          0.2182,
+          0.4053
+        ],
+        "lon_range": [
+          32.516,
+          32.6778
+        ]
+      },
+      "value_stats": {
+        "mean": 116.71149073339215,
+        "std": 657.1241182341528,
+        "min": 0.0,
+        "max": 8332.0,
+        "median": 43.49416667
+      },
+      "plots_created": [
+        "uganda_pm25_timeseries.png",
+        "uganda_pm25_spatial.png"
+      ]
+    },
+    "no2": {
+      "data_points": 18056,
+      "date_range": {
+        "start": "2022-01-01T00:00:00",
+        "end": "2022-12-31T00:00:00"
+      },
+      "spatial_coverage": {
+        "lat_range": [
+          0.2182,
+          0.4053
+        ],
+        "lon_range": [
+          32.516,
+          32.6778
+        ]
+      },
+      "value_stats": {
+        "mean": 125.5590409006802,
+        "std": 657.1949477706434,
+        "min": 2.22,
+        "max": 8332.0,
+        "median": 52.19919573999999
+      },
+      "plots_created": [
+        "uganda_no2_timeseries.png",
+        "uganda_no2_spatial.png"
+      ]
+    },
+    "WRND": {
+      "data_points": 18096,
+      "date_range": {
+        "start": "2022-01-01T00:00:00",
+        "end": "2022-12-31T00:00:00"
+      },
+      "spatial_coverage": {
+        "lat_range": [
+          0.2182,
+          0.4053
+        ],
+        "lon_range": [
+          32.516,
+          32.6778
+        ]
+      },
+      "value_stats": {
+        "mean": 4.92173825265031,
+        "std": 2.602362409227431,
+        "min": 0.0,
+        "max": 10.95379239,
+        "median": 4.261805326
+      },
+      "plots_created": [
+        "uganda_WRND_timeseries.png",
+        "uganda_WRND_spatial.png"
+      ]
+    },
+    "EH": {
+      "data_points": 674,
+      "date_range": {
+        "start": "2022-01-01T00:00:00",
+        "end": "2022-12-31T00:00:00"
+      },
+      "spatial_coverage": {
+        "lat_range": [
+          0.314,
+          0.3548
+        ],
+        "lon_range": [
+          32.59,
+          32.6778
+        ]
+      },
+      "value_stats": {
+        "mean": 52.39240715645697,
+        "std": 59.28543356166731,
+        "min": 0.855228244,
+        "max": 233.0252104,
+        "median": 41.63835083
+      },
+      "plots_created": [
+        "uganda_EH_timeseries.png",
+        "uganda_EH_spatial.png"
+      ]
+    },
+    "EM": {
+      "data_points": 12683,
+      "date_range": {
+        "start": "2022-01-01T00:00:00",
+        "end": "2022-12-31T00:00:00"
+      },
+      "spatial_coverage": {
+        "lat_range": [
+          0.2336,
+          0.4053
+        ],
+        "lon_range": [
+          32.516,
+          32.6778
+        ]
+      },
+      "value_stats": {
+        "mean": 149.06348145051786,
+        "std": 165.50489900157848,
+        "min": 0.855228244,
+        "max": 777.3827915,
+        "median": 85.66737179
+      },
+      "plots_created": [
+        "uganda_EM_timeseries.png",
+        "uganda_EM_spatial.png"
+      ]
+    },
+    "T2M": {
+      "data_points": 9523,
+      "date_range": {
+        "start": "2022-01-01T00:00:00",
+        "end": "2022-12-31T00:00:00"
+      },
+      "spatial_coverage": {
+        "lat_range": [
+          0.2182,
+          0.3974
+        ],
+        "lon_range": [
+          32.516,
+          32.6778
+        ]
+      },
+      "value_stats": {
+        "mean": 22.46913477349785,
+        "std": 1.039241865532058,
+        "min": 18.90300903,
+        "max": 25.42391357,
+        "median": 22.36678467
+      },
+      "plots_created": [
+        "uganda_T2M_timeseries.png",
+        "uganda_T2M_spatial.png"
+      ]
+    },
+    "RH": {
+      "data_points": 9418,
+      "date_range": {
+        "start": "2022-01-01T00:00:00",
+        "end": "2022-12-31T00:00:00"
+      },
+      "spatial_coverage": {
+        "lat_range": [
+          0.2182,
+          0.3974
+        ],
+        "lon_range": [
+          32.516,
+          32.6778
+        ]
+      },
+      "value_stats": {
+        "mean": 77.65593992430983,
+        "std": 6.159013179141611,
+        "min": 56.35265069,
+        "max": 95.65436141,
+        "median": 78.19017669
+      },
+      "plots_created": [
+        "uganda_RH_timeseries.png",
+        "uganda_RH_spatial.png"
+      ]
+    },
+    "LST": {
+      "data_points": 9119,
+      "date_range": {
+        "start": "2022-01-01T00:00:00",
+        "end": "2022-12-19T00:00:00"
+      },
+      "spatial_coverage": {
+        "lat_range": [
+          0.2182,
+          0.4053
+        ],
+        "lon_range": [
+          32.516,
+          32.6778
+        ]
+      },
+      "value_stats": {
+        "mean": 32.344802295384355,
+        "std": 3.3816104298826772,
+        "min": 17.95,
+        "max": 41.71,
+        "median": 32.27935484
+      },
+      "plots_created": [
+        "uganda_LST_timeseries.png",
+        "uganda_LST_spatial.png"
+      ]
+    },
+    "ET": {
+      "data_points": 5629,
+      "date_range": {
+        "start": "2022-01-01T00:00:00",
+        "end": "2022-12-31T00:00:00"
+      },
+      "spatial_coverage": {
+        "lat_range": [
+          0.2182,
+          0.4053
+        ],
+        "lon_range": [
+          32.516,
+          32.6778
+        ]
+      },
+      "value_stats": {
+        "mean": 15.755964265925563,
+        "std": 3.796160028520233,
+        "min": 3.7,
+        "max": 23.98503937,
+        "median": 16.54031621
+      },
+      "plots_created": [
+        "uganda_ET_timeseries.png",
+        "uganda_ET_spatial.png"
+      ]
+    },
+    "TP": {
+      "data_points": 9523,
+      "date_range": {
+        "start": "2022-01-01T00:00:00",
+        "end": "2022-12-31T00:00:00"
+      },
+      "spatial_coverage": {
+        "lat_range": [
+          0.2182,
+          0.3974
+        ],
+        "lon_range": [
+          32.516,
+          32.6778
+        ]
+      },
+      "value_stats": {
+        "mean": 0.1594566762302846,
+        "std": 0.20310864222669914,
+        "min": -1.88e-15,
+        "max": 1.868780935,
+        "median": 0.084538908
+      },
+      "plots_created": [
+        "uganda_TP_timeseries.png",
+        "uganda_TP_spatial.png"
+      ]
+    },
+    "BLH": {
+      "data_points": 9524,
+      "date_range": {
+        "start": "2022-01-01T00:00:00",
+        "end": "2022-12-31T00:00:00"
+      },
+      "spatial_coverage": {
+        "lat_range": [
+          0.2182,
+          0.3974
+        ],
+        "lon_range": [
+          32.516,
+          32.6778
+        ]
+      },
+      "value_stats": {
+        "mean": 442.07665362726794,
+        "std": 105.22901472841023,
+        "min": 129.9692078,
+        "max": 941.3193359,
+        "median": 432.49646
+      },
+      "plots_created": [
+        "uganda_BLH_timeseries.png",
+        "uganda_BLH_spatial.png"
+      ]
+    }
+  }
+}

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHEAQI CSV Data Processor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .csv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .csv-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+        }
+        
+        .csv-card:hover {
+            border-color: #3498db;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .csv-card.selected {
+            border-color: #27ae60;
+            background: linear-gradient(135deg, #d5f4e6, #ffffff);
+        }
+        
+        .csv-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .csv-info {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .csv-info span {
+            display: inline-block;
+            background: #ecf0f1;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            margin: 2px 4px;
+        }
+        
+        .csv-sample {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        
+        .csv-sample h4 {
+            color: #34495e;
+            margin-bottom: 10px;
+        }
+        
+        .sample-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85em;
+        }
+        
+        .sample-table th, .sample-table td {
+            padding: 5px 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        
+        .sample-table th {
+            background: #34495e;
+            color: white;
+        }
+        
+        .actions {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 5px 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-success { background: linear-gradient(135deg, #27ae60, #229954); }
+        .btn-warning { background: linear-gradient(135deg, #f39c12, #e67e22); }
+        .btn-info { background: linear-gradient(135deg, #8e44ad, #9b59b6); }
+        
+        .results {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .no-files {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+        
+        .no-files i {
+            font-size: 4em;
+            margin-bottom: 20px;
+            color: #bdc3c7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌍 CHEAQI Data Processor</h1>
+            <p>Simple interface for processing spatial interpolation data</p>
+        </div>
+        
+        <div class="content">
+            {% if csv_files %}
+                <h2>📄 Available CSV Files</h2>
+                <div class="csv-grid">
+                    {% for file in csv_files %}
+                        <div class="csv-card" data-filename="{{ file.name }}">
+                            <div class="csv-name">{{ file.name }}</div>
+                            
+                            {% if file.error %}
+                                <div style="color: red;">Error: {{ file.error }}</div>
+                            {% else %}
+                                <div class="csv-info">
+                                    <span>📊 {{ file.columns|length }} columns</span>
+                                    <span>💾 {{ "%.1f"|format(file.size/1024) }} KB</span>
+                                </div>
+                                
+                                <div class="csv-sample">
+                                    <h4>📋 Column Preview:</h4>
+                                    <div style="font-family: monospace; color: #2c3e50;">
+                                        {{ file.columns|join(', ') }}
+                                    </div>
+                                    
+                                    {% if file.sample_data %}
+                                        <h4 style="margin-top: 10px;">🔍 Sample Data:</h4>
+                                        <table class="sample-table">
+                                            <thead>
+                                                <tr>
+                                                    {% for col in file.columns[:4] %}
+                                                        <th>{{ col }}</th>
+                                                    {% endfor %}
+                                                    {% if file.columns|length > 4 %}
+                                                        <th>...</th>
+                                                    {% endif %}
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for row in file.sample_data %}
+                                                    <tr>
+                                                        {% for col in file.columns[:4] %}
+                                                            <td>{{ row[col] }}</td>
+                                                        {% endfor %}
+                                                        {% if file.columns|length > 4 %}
+                                                            <td>...</td>
+                                                        {% endif %}
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="actions">
+                    <h3>🚀 Start Spatial Interpolation:</h3>
+                    <button class="btn btn-success" onclick="openVariableExplorer()">🔍 Explore & Select Variables</button>
+                    <button class="btn btn-success" onclick="openVariableSelection()">🎯 Quick Configuration</button>
+                    
+                    <h3 style="margin-top: 30px;">⚡ Batch Processing with Nextflow:</h3>
+                    <button class="btn btn-warning" onclick="showNextflowConfig()">🔄 Run Nextflow Workflow</button>
+                    <button class="btn btn-info" onclick="showWorkflowStatus()">📊 Check Workflow Status</button>
+                    
+                    <h3 style="margin-top: 30px;">🔧 Quick Actions:</h3>
+                    <button class="btn" onclick="processFile('info')">📊 Get File Info</button>
+                    <button class="btn btn-info" onclick="processFile('summary')">📈 Summary Stats</button>
+                </div>
+                
+            {% else %}
+                <div class="no-files">
+                    <div style="font-size: 4em; margin-bottom: 20px;">📁</div>
+                    <h2>No CSV files found</h2>
+                    <p>Please add CSV files to the /data directory</p>
+                </div>
+            {% endif %}
+            
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Processing your data...</p>
+            </div>
+            
+            <div class="results">
+                <h3>📋 Results:</h3>
+                <pre id="result-content"></pre>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let selectedFile = null;
+        
+        // Handle file selection
+        document.querySelectorAll('.csv-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Remove previous selection
+                document.querySelectorAll('.csv-card').forEach(c => c.classList.remove('selected'));
+                
+                // Select this card
+                this.classList.add('selected');
+                selectedFile = this.dataset.filename;
+            });
+        });
+        
+        function showLoading() {
+            document.querySelector('.loading').style.display = 'block';
+            document.querySelector('.results').style.display = 'none';
+        }
+        
+        function hideLoading() {
+            document.querySelector('.loading').style.display = 'none';
+        }
+        
+        function showResults(data) {
+            document.querySelector('.results').style.display = 'block';
+            document.getElementById('result-content').textContent = JSON.stringify(data, null, 2);
+        }
+        
+        function processFile(operation) {
+            if (!selectedFile) {
+                alert('Please select a CSV file first!');
+                return;
+            }
+            
+            showLoading();
+            
+            fetch('/api/process_csv', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    filename: selectedFile,
+                    operation: operation
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                hideLoading();
+                showResults(data);
+            })
+            .catch(error => {
+                hideLoading();
+                console.error('Error:', error);
+                alert('Error processing file: ' + error);
+            });
+        }
+        
+        function openVariableSelection() {
+            if (!selectedFile) {
+                alert('Please select a CSV file first!');
+                return;
+            }
+            
+            // Navigate to variable selection page
+            window.location.href = `/variables/${selectedFile}`;
+        }
+
+        function openVariableExplorer() {
+            if (!selectedFile) {
+                alert('Please select a CSV file first!');
+                return;
+            }
+            
+            // Open variable explorer in new tab
+            window.open(`/variable_explorer/${selectedFile}`, '_blank');
+        }
+        
+        function showNextflowConfig() {
+            if (!selectedFile) {
+                alert('Please select a CSV file first!');
+                return;
+            }
+            
+            // Create modal for Nextflow workflow configuration
+            const modal = document.createElement('div');
+            modal.innerHTML = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 10px; min-width: 600px; max-height: 80vh; overflow-y: auto;">
+                        <h3>🔄 Nextflow Batch Workflow Configuration</h3>
+                        <p><strong>Selected File:</strong> ${selectedFile}</p>
+                        
+                        <div style="margin: 15px 0;">
+                            <label><strong>Variables to interpolate (comma-separated):</strong></label><br>
+                            <input type="text" id="nf-variables" style="width: 100%; padding: 8px; margin: 5px 0;" placeholder="temperature,humidity,precipitation">
+                            <small>Enter variable names separated by commas</small>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div>
+                                <label><strong>Latitude Column:</strong></label><br>
+                                <input type="text" id="nf-lat" style="width: 100%; padding: 8px; margin: 5px 0;" value="lat">
+                            </div>
+                            <div>
+                                <label><strong>Longitude Column:</strong></label><br>
+                                <input type="text" id="nf-lon" style="width: 100%; padding: 8px; margin: 5px 0;" value="lon">
+                            </div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0;">
+                            <div>
+                                <label><strong>Interpolation Method:</strong></label><br>
+                                <select id="nf-method" style="width: 100%; padding: 8px; margin: 5px 0;">
+                                    <option value="kriging">Kriging (Recommended)</option>
+                                    <option value="idw">Inverse Distance Weighting</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label><strong>Grid Resolution:</strong></label><br>
+                                <input type="number" id="nf-resolution" style="width: 100%; padding: 8px; margin: 5px 0;" value="100" min="50" max="500">
+                            </div>
+                        </div>
+                        
+                        <div style="margin: 15px 0;">
+                            <label>
+                                <input type="checkbox" id="nf-cv" checked> Enable Cross-Validation (Quality Assessment)
+                            </label>
+                        </div>
+                        
+                        <div style="background: #e3f2fd; padding: 15px; border-radius: 5px; margin: 15px 0;">
+                            <h4>📋 Nextflow Workflow Features:</h4>
+                            <ul style="margin: 10px 0 0 20px;">
+                                <li>✅ Automated batch processing of multiple variables</li>
+                                <li>✅ Advanced error handling and retry mechanisms</li>
+                                <li>✅ Comprehensive validation and quality checks</li>
+                                <li>✅ Detailed HTML reports and statistics</li>
+                                <li>✅ Cross-validation for interpolation accuracy</li>
+                                <li>✅ Parallel processing for faster execution</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="margin-top: 20px; text-align: right;">
+                            <button onclick="this.parentElement.parentElement.parentElement.remove()" style="margin-right: 10px; padding: 10px 20px; border: 1px solid #ddd; border-radius: 5px; background: white;">Cancel</button>
+                            <button onclick="runNextflowWorkflow()" style="padding: 10px 20px; background: #f39c12; color: white; border: none; border-radius: 5px; font-weight: bold;">🚀 Start Workflow</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+        
+        function runNextflowWorkflow() {
+            const variables = document.getElementById('nf-variables').value.split(',').map(v => v.trim()).filter(v => v);
+            const config = {
+                filename: selectedFile,
+                variables: variables,
+                lat_column: document.getElementById('nf-lat').value,
+                lon_column: document.getElementById('nf-lon').value,
+                method: document.getElementById('nf-method').value,
+                resolution: parseInt(document.getElementById('nf-resolution').value),
+                cross_validation: document.getElementById('nf-cv').checked
+            };
+            
+            // Remove modal
+            document.querySelector('div[style*="position: fixed"]').remove();
+            
+            if (variables.length === 0) {
+                alert('Please specify at least one variable to interpolate!');
+                return;
+            }
+            
+            showLoading();
+            document.querySelector('.loading p').textContent = 'Running Nextflow workflow... This may take several minutes for batch processing.';
+            
+            fetch('/api/run_nextflow', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(config)
+            })
+            .then(response => response.json())
+            .then(data => {
+                hideLoading();
+                if (data.status === 'success') {
+                    showResults({
+                        message: '✅ Nextflow workflow completed successfully!',
+                        workflow_id: data.workflow_id,
+                        output_directory: data.output_dir,
+                        details: 'Check the outputs directory for GeoTIFF files and HTML reports.',
+                        stdout: data.stdout
+                    });
+                } else {
+                    showResults({
+                        error: '❌ Nextflow workflow failed',
+                        workflow_id: data.workflow_id,
+                        error_details: data.error,
+                        stdout: data.stdout
+                    });
+                }
+            })
+            .catch(error => {
+                hideLoading();
+                console.error('Error:', error);
+                alert('Error running Nextflow workflow: ' + error);
+            });
+        }
+        
+        function showWorkflowStatus() {
+            const workflowId = prompt('Enter Workflow ID (or leave empty to check latest):');
+            
+            if (workflowId !== null) {  // User didn't cancel
+                showLoading();
+                document.querySelector('.loading p').textContent = 'Checking workflow status...';
+                
+                const url = workflowId ? `/api/workflow_status/${workflowId}` : '/api/workflow_status/latest';
+                
+                fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    hideLoading();
+                    showResults({
+                        workflow_status: data.status,
+                        workflow_id: data.workflow_id,
+                        report: data.report || 'No report available yet',
+                        message: data.message || 'Status retrieved successfully'
+                    });
+                })
+                .catch(error => {
+                    hideLoading();
+                    console.error('Error:', error);
+                    alert('Error checking workflow status: ' + error);
+                });
+            }
+        }
+    </script>
+</body>
+</html>

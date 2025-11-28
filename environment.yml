@@ -1,0 +1,50 @@
+name: cheaqi
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # Python and core packages
+  - python=3.11
+  - pip
+  
+  # Web framework
+  - flask
+  - jinja2
+  
+  # Core scientific computing
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  
+  # Geospatial libraries
+  - gdal>=3.7
+  - rasterio
+  - fiona
+  - pyproj
+  - geopandas
+  - shapely
+  - rtree
+  
+  # Spatial analysis and interpolation
+  - xarray
+  - netcdf4
+  - h5py
+  
+  # Progress bars and UI
+  - tqdm
+  - matplotlib
+  - plotly
+  
+  # Workflow management
+  - openjdk=17
+  - curl
+  - wget
+  
+  # Additional tools
+  - psutil
+  - flask-socketio
+  
+  # Pip packages not available in conda
+  - pip:
+    - pykrige
