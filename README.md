@@ -25,10 +25,30 @@ Complete Docker-based spatial analysis workflow for processing environmental and
 
 ## Quick Start
 
+### Option A: Local Development
 1. **Build and start the service:**
    ```bash
    docker-compose up -d
    ```
+
+### Option B: Run from Dockstore
+```bash
+# Install Dockstore CLI
+curl -L https://github.com/dockstore/dockstore-cli/releases/download/1.15.0/dockstore -o dockstore
+chmod +x dockstore && sudo mv dockstore /usr/local/bin/
+
+# Launch workflow from Dockstore
+dockstore workflow launch --entry github.com/yourusername/cheaqi-uganda-spatial-analysis:main \
+  --json test-parameters.json
+```
+
+### Option C: Direct Nextflow from Dockstore
+```bash
+nextflow run dockstore.org/workflows/github.com/yourusername/cheaqi-uganda-spatial-analysis:main \
+  -c uganda.config --input_csv data/Uganda_Daily.csv
+```
+
+## Using the Web Interface
 
 2. **Access the web interface:**
    - Open http://localhost:8888 in your browser

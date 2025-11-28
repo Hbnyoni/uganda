@@ -1,0 +1,1946 @@
+{
+  "multi_geostack_file": "/app/outputs/uganda_enhanced_analysis/uganda_all_variables_geostack.tif",
+  "total_bands": 321,
+  "variables": [
+    "EM",
+    "NDVI",
+    "LST",
+    "T2M",
+    "TP",
+    "no2",
+    "RH",
+    "WRND",
+    "pm25",
+    "ET",
+    "BLH"
+  ],
+  "band_catalog": [
+    {
+      "band_number": 1,
+      "filename": "uganda_BLH_daily_2022-01-01.tif",
+      "variable": "BLH",
+      "date": "2022-01-01"
+    },
+    {
+      "band_number": 2,
+      "filename": "uganda_BLH_daily_2022-01-02.tif",
+      "variable": "BLH",
+      "date": "2022-01-02"
+    },
+    {
+      "band_number": 3,
+      "filename": "uganda_BLH_daily_2022-01-03.tif",
+      "variable": "BLH",
+      "date": "2022-01-03"
+    },
+    {
+      "band_number": 4,
+      "filename": "uganda_BLH_daily_2022-01-04.tif",
+      "variable": "BLH",
+      "date": "2022-01-04"
+    },
+    {
+      "band_number": 5,
+      "filename": "uganda_BLH_daily_2022-01-05.tif",
+      "variable": "BLH",
+      "date": "2022-01-05"
+    },
+    {
+      "band_number": 6,
+      "filename": "uganda_BLH_daily_2022-01-06.tif",
+      "variable": "BLH",
+      "date": "2022-01-06"
+    },
+    {
+      "band_number": 7,
+      "filename": "uganda_BLH_daily_2022-01-07.tif",
+      "variable": "BLH",
+      "date": "2022-01-07"
+    },
+    {
+      "band_number": 8,
+      "filename": "uganda_BLH_daily_2022-01-08.tif",
+      "variable": "BLH",
+      "date": "2022-01-08"
+    },
+    {
+      "band_number": 9,
+      "filename": "uganda_BLH_daily_2022-01-09.tif",
+      "variable": "BLH",
+      "date": "2022-01-09"
+    },
+    {
+      "band_number": 10,
+      "filename": "uganda_BLH_daily_2022-01-10.tif",
+      "variable": "BLH",
+      "date": "2022-01-10"
+    },
+    {
+      "band_number": 11,
+      "filename": "uganda_BLH_daily_2022-01-11.tif",
+      "variable": "BLH",
+      "date": "2022-01-11"
+    },
+    {
+      "band_number": 12,
+      "filename": "uganda_BLH_daily_2022-01-12.tif",
+      "variable": "BLH",
+      "date": "2022-01-12"
+    },
+    {
+      "band_number": 13,
+      "filename": "uganda_BLH_daily_2022-01-13.tif",
+      "variable": "BLH",
+      "date": "2022-01-13"
+    },
+    {
+      "band_number": 14,
+      "filename": "uganda_BLH_daily_2022-01-14.tif",
+      "variable": "BLH",
+      "date": "2022-01-14"
+    },
+    {
+      "band_number": 15,
+      "filename": "uganda_BLH_daily_2022-01-15.tif",
+      "variable": "BLH",
+      "date": "2022-01-15"
+    },
+    {
+      "band_number": 16,
+      "filename": "uganda_BLH_daily_2022-01-16.tif",
+      "variable": "BLH",
+      "date": "2022-01-16"
+    },
+    {
+      "band_number": 17,
+      "filename": "uganda_BLH_daily_2022-01-17.tif",
+      "variable": "BLH",
+      "date": "2022-01-17"
+    },
+    {
+      "band_number": 18,
+      "filename": "uganda_BLH_daily_2022-01-18.tif",
+      "variable": "BLH",
+      "date": "2022-01-18"
+    },
+    {
+      "band_number": 19,
+      "filename": "uganda_BLH_daily_2022-01-19.tif",
+      "variable": "BLH",
+      "date": "2022-01-19"
+    },
+    {
+      "band_number": 20,
+      "filename": "uganda_BLH_daily_2022-01-20.tif",
+      "variable": "BLH",
+      "date": "2022-01-20"
+    },
+    {
+      "band_number": 21,
+      "filename": "uganda_BLH_daily_2022-01-21.tif",
+      "variable": "BLH",
+      "date": "2022-01-21"
+    },
+    {
+      "band_number": 22,
+      "filename": "uganda_BLH_daily_2022-01-22.tif",
+      "variable": "BLH",
+      "date": "2022-01-22"
+    },
+    {
+      "band_number": 23,
+      "filename": "uganda_BLH_daily_2022-01-23.tif",
+      "variable": "BLH",
+      "date": "2022-01-23"
+    },
+    {
+      "band_number": 24,
+      "filename": "uganda_BLH_daily_2022-01-24.tif",
+      "variable": "BLH",
+      "date": "2022-01-24"
+    },
+    {
+      "band_number": 25,
+      "filename": "uganda_BLH_daily_2022-01-25.tif",
+      "variable": "BLH",
+      "date": "2022-01-25"
+    },
+    {
+      "band_number": 26,
+      "filename": "uganda_BLH_daily_2022-01-26.tif",
+      "variable": "BLH",
+      "date": "2022-01-26"
+    },
+    {
+      "band_number": 27,
+      "filename": "uganda_BLH_daily_2022-01-27.tif",
+      "variable": "BLH",
+      "date": "2022-01-27"
+    },
+    {
+      "band_number": 28,
+      "filename": "uganda_BLH_daily_2022-01-28.tif",
+      "variable": "BLH",
+      "date": "2022-01-28"
+    },
+    {
+      "band_number": 29,
+      "filename": "uganda_BLH_daily_2022-01-29.tif",
+      "variable": "BLH",
+      "date": "2022-01-29"
+    },
+    {
+      "band_number": 30,
+      "filename": "uganda_BLH_daily_2022-01-30.tif",
+      "variable": "BLH",
+      "date": "2022-01-30"
+    },
+    {
+      "band_number": 31,
+      "filename": "uganda_EM_daily_2022-01-01.tif",
+      "variable": "EM",
+      "date": "2022-01-01"
+    },
+    {
+      "band_number": 32,
+      "filename": "uganda_EM_daily_2022-01-02.tif",
+      "variable": "EM",
+      "date": "2022-01-02"
+    },
+    {
+      "band_number": 33,
+      "filename": "uganda_EM_daily_2022-01-03.tif",
+      "variable": "EM",
+      "date": "2022-01-03"
+    },
+    {
+      "band_number": 34,
+      "filename": "uganda_EM_daily_2022-01-04.tif",
+      "variable": "EM",
+      "date": "2022-01-04"
+    },
+    {
+      "band_number": 35,
+      "filename": "uganda_EM_daily_2022-01-05.tif",
+      "variable": "EM",
+      "date": "2022-01-05"
+    },
+    {
+      "band_number": 36,
+      "filename": "uganda_EM_daily_2022-01-06.tif",
+      "variable": "EM",
+      "date": "2022-01-06"
+    },
+    {
+      "band_number": 37,
+      "filename": "uganda_EM_daily_2022-01-07.tif",
+      "variable": "EM",
+      "date": "2022-01-07"
+    },
+    {
+      "band_number": 38,
+      "filename": "uganda_EM_daily_2022-01-08.tif",
+      "variable": "EM",
+      "date": "2022-01-08"
+    },
+    {
+      "band_number": 39,
+      "filename": "uganda_EM_daily_2022-01-09.tif",
+      "variable": "EM",
+      "date": "2022-01-09"
+    },
+    {
+      "band_number": 40,
+      "filename": "uganda_EM_daily_2022-01-10.tif",
+      "variable": "EM",
+      "date": "2022-01-10"
+    },
+    {
+      "band_number": 41,
+      "filename": "uganda_EM_daily_2022-01-11.tif",
+      "variable": "EM",
+      "date": "2022-01-11"
+    },
+    {
+      "band_number": 42,
+      "filename": "uganda_EM_daily_2022-01-12.tif",
+      "variable": "EM",
+      "date": "2022-01-12"
+    },
+    {
+      "band_number": 43,
+      "filename": "uganda_EM_daily_2022-01-13.tif",
+      "variable": "EM",
+      "date": "2022-01-13"
+    },
+    {
+      "band_number": 44,
+      "filename": "uganda_EM_daily_2022-01-14.tif",
+      "variable": "EM",
+      "date": "2022-01-14"
+    },
+    {
+      "band_number": 45,
+      "filename": "uganda_EM_daily_2022-01-15.tif",
+      "variable": "EM",
+      "date": "2022-01-15"
+    },
+    {
+      "band_number": 46,
+      "filename": "uganda_EM_daily_2022-01-16.tif",
+      "variable": "EM",
+      "date": "2022-01-16"
+    },
+    {
+      "band_number": 47,
+      "filename": "uganda_EM_daily_2022-01-17.tif",
+      "variable": "EM",
+      "date": "2022-01-17"
+    },
+    {
+      "band_number": 48,
+      "filename": "uganda_EM_daily_2022-01-18.tif",
+      "variable": "EM",
+      "date": "2022-01-18"
+    },
+    {
+      "band_number": 49,
+      "filename": "uganda_EM_daily_2022-01-19.tif",
+      "variable": "EM",
+      "date": "2022-01-19"
+    },
+    {
+      "band_number": 50,
+      "filename": "uganda_EM_daily_2022-01-20.tif",
+      "variable": "EM",
+      "date": "2022-01-20"
+    },
+    {
+      "band_number": 51,
+      "filename": "uganda_EM_daily_2022-01-21.tif",
+      "variable": "EM",
+      "date": "2022-01-21"
+    },
+    {
+      "band_number": 52,
+      "filename": "uganda_EM_daily_2022-01-22.tif",
+      "variable": "EM",
+      "date": "2022-01-22"
+    },
+    {
+      "band_number": 53,
+      "filename": "uganda_EM_daily_2022-01-23.tif",
+      "variable": "EM",
+      "date": "2022-01-23"
+    },
+    {
+      "band_number": 54,
+      "filename": "uganda_EM_daily_2022-01-24.tif",
+      "variable": "EM",
+      "date": "2022-01-24"
+    },
+    {
+      "band_number": 55,
+      "filename": "uganda_EM_daily_2022-01-25.tif",
+      "variable": "EM",
+      "date": "2022-01-25"
+    },
+    {
+      "band_number": 56,
+      "filename": "uganda_EM_daily_2022-01-26.tif",
+      "variable": "EM",
+      "date": "2022-01-26"
+    },
+    {
+      "band_number": 57,
+      "filename": "uganda_EM_daily_2022-01-27.tif",
+      "variable": "EM",
+      "date": "2022-01-27"
+    },
+    {
+      "band_number": 58,
+      "filename": "uganda_EM_daily_2022-01-28.tif",
+      "variable": "EM",
+      "date": "2022-01-28"
+    },
+    {
+      "band_number": 59,
+      "filename": "uganda_EM_daily_2022-01-29.tif",
+      "variable": "EM",
+      "date": "2022-01-29"
+    },
+    {
+      "band_number": 60,
+      "filename": "uganda_EM_daily_2022-01-30.tif",
+      "variable": "EM",
+      "date": "2022-01-30"
+    },
+    {
+      "band_number": 61,
+      "filename": "uganda_ET_daily_2022-01-01.tif",
+      "variable": "ET",
+      "date": "2022-01-01"
+    },
+    {
+      "band_number": 62,
+      "filename": "uganda_ET_daily_2022-01-02.tif",
+      "variable": "ET",
+      "date": "2022-01-02"
+    },
+    {
+      "band_number": 63,
+      "filename": "uganda_ET_daily_2022-01-03.tif",
+      "variable": "ET",
+      "date": "2022-01-03"
+    },
+    {
+      "band_number": 64,
+      "filename": "uganda_ET_daily_2022-01-05.tif",
+      "variable": "ET",
+      "date": "2022-01-05"
+    },
+    {
+      "band_number": 65,
+      "filename": "uganda_ET_daily_2022-01-06.tif",
+      "variable": "ET",
+      "date": "2022-01-06"
+    },
+    {
+      "band_number": 66,
+      "filename": "uganda_ET_daily_2022-01-07.tif",
+      "variable": "ET",
+      "date": "2022-01-07"
+    },
+    {
+      "band_number": 67,
+      "filename": "uganda_ET_daily_2022-01-08.tif",
+      "variable": "ET",
+      "date": "2022-01-08"
+    },
+    {
+      "band_number": 68,
+      "filename": "uganda_ET_daily_2022-01-09.tif",
+      "variable": "ET",
+      "date": "2022-01-09"
+    },
+    {
+      "band_number": 69,
+      "filename": "uganda_ET_daily_2022-01-10.tif",
+      "variable": "ET",
+      "date": "2022-01-10"
+    },
+    {
+      "band_number": 70,
+      "filename": "uganda_ET_daily_2022-01-11.tif",
+      "variable": "ET",
+      "date": "2022-01-11"
+    },
+    {
+      "band_number": 71,
+      "filename": "uganda_ET_daily_2022-01-12.tif",
+      "variable": "ET",
+      "date": "2022-01-12"
+    },
+    {
+      "band_number": 72,
+      "filename": "uganda_ET_daily_2022-01-13.tif",
+      "variable": "ET",
+      "date": "2022-01-13"
+    },
+    {
+      "band_number": 73,
+      "filename": "uganda_ET_daily_2022-01-14.tif",
+      "variable": "ET",
+      "date": "2022-01-14"
+    },
+    {
+      "band_number": 74,
+      "filename": "uganda_ET_daily_2022-01-15.tif",
+      "variable": "ET",
+      "date": "2022-01-15"
+    },
+    {
+      "band_number": 75,
+      "filename": "uganda_ET_daily_2022-01-16.tif",
+      "variable": "ET",
+      "date": "2022-01-16"
+    },
+    {
+      "band_number": 76,
+      "filename": "uganda_ET_daily_2022-01-17.tif",
+      "variable": "ET",
+      "date": "2022-01-17"
+    },
+    {
+      "band_number": 77,
+      "filename": "uganda_ET_daily_2022-01-18.tif",
+      "variable": "ET",
+      "date": "2022-01-18"
+    },
+    {
+      "band_number": 78,
+      "filename": "uganda_ET_daily_2022-01-19.tif",
+      "variable": "ET",
+      "date": "2022-01-19"
+    },
+    {
+      "band_number": 79,
+      "filename": "uganda_ET_daily_2022-01-20.tif",
+      "variable": "ET",
+      "date": "2022-01-20"
+    },
+    {
+      "band_number": 80,
+      "filename": "uganda_ET_daily_2022-01-21.tif",
+      "variable": "ET",
+      "date": "2022-01-21"
+    },
+    {
+      "band_number": 81,
+      "filename": "uganda_ET_daily_2022-01-22.tif",
+      "variable": "ET",
+      "date": "2022-01-22"
+    },
+    {
+      "band_number": 82,
+      "filename": "uganda_ET_daily_2022-01-23.tif",
+      "variable": "ET",
+      "date": "2022-01-23"
+    },
+    {
+      "band_number": 83,
+      "filename": "uganda_ET_daily_2022-01-24.tif",
+      "variable": "ET",
+      "date": "2022-01-24"
+    },
+    {
+      "band_number": 84,
+      "filename": "uganda_ET_daily_2022-01-25.tif",
+      "variable": "ET",
+      "date": "2022-01-25"
+    },
+    {
+      "band_number": 85,
+      "filename": "uganda_ET_daily_2022-01-26.tif",
+      "variable": "ET",
+      "date": "2022-01-26"
+    },
+    {
+      "band_number": 86,
+      "filename": "uganda_ET_daily_2022-01-27.tif",
+      "variable": "ET",
+      "date": "2022-01-27"
+    },
+    {
+      "band_number": 87,
+      "filename": "uganda_ET_daily_2022-01-28.tif",
+      "variable": "ET",
+      "date": "2022-01-28"
+    },
+    {
+      "band_number": 88,
+      "filename": "uganda_ET_daily_2022-01-29.tif",
+      "variable": "ET",
+      "date": "2022-01-29"
+    },
+    {
+      "band_number": 89,
+      "filename": "uganda_ET_daily_2022-01-30.tif",
+      "variable": "ET",
+      "date": "2022-01-30"
+    },
+    {
+      "band_number": 90,
+      "filename": "uganda_LST_daily_2022-01-01.tif",
+      "variable": "LST",
+      "date": "2022-01-01"
+    },
+    {
+      "band_number": 91,
+      "filename": "uganda_LST_daily_2022-01-02.tif",
+      "variable": "LST",
+      "date": "2022-01-02"
+    },
+    {
+      "band_number": 92,
+      "filename": "uganda_LST_daily_2022-01-03.tif",
+      "variable": "LST",
+      "date": "2022-01-03"
+    },
+    {
+      "band_number": 93,
+      "filename": "uganda_LST_daily_2022-01-04.tif",
+      "variable": "LST",
+      "date": "2022-01-04"
+    },
+    {
+      "band_number": 94,
+      "filename": "uganda_LST_daily_2022-01-05.tif",
+      "variable": "LST",
+      "date": "2022-01-05"
+    },
+    {
+      "band_number": 95,
+      "filename": "uganda_LST_daily_2022-01-06.tif",
+      "variable": "LST",
+      "date": "2022-01-06"
+    },
+    {
+      "band_number": 96,
+      "filename": "uganda_LST_daily_2022-01-07.tif",
+      "variable": "LST",
+      "date": "2022-01-07"
+    },
+    {
+      "band_number": 97,
+      "filename": "uganda_LST_daily_2022-01-08.tif",
+      "variable": "LST",
+      "date": "2022-01-08"
+    },
+    {
+      "band_number": 98,
+      "filename": "uganda_LST_daily_2022-01-09.tif",
+      "variable": "LST",
+      "date": "2022-01-09"
+    },
+    {
+      "band_number": 99,
+      "filename": "uganda_LST_daily_2022-01-10.tif",
+      "variable": "LST",
+      "date": "2022-01-10"
+    },
+    {
+      "band_number": 100,
+      "filename": "uganda_LST_daily_2022-01-11.tif",
+      "variable": "LST",
+      "date": "2022-01-11"
+    },
+    {
+      "band_number": 101,
+      "filename": "uganda_LST_daily_2022-01-12.tif",
+      "variable": "LST",
+      "date": "2022-01-12"
+    },
+    {
+      "band_number": 102,
+      "filename": "uganda_LST_daily_2022-01-13.tif",
+      "variable": "LST",
+      "date": "2022-01-13"
+    },
+    {
+      "band_number": 103,
+      "filename": "uganda_LST_daily_2022-01-14.tif",
+      "variable": "LST",
+      "date": "2022-01-14"
+    },
+    {
+      "band_number": 104,
+      "filename": "uganda_LST_daily_2022-01-15.tif",
+      "variable": "LST",
+      "date": "2022-01-15"
+    },
+    {
+      "band_number": 105,
+      "filename": "uganda_LST_daily_2022-01-22.tif",
+      "variable": "LST",
+      "date": "2022-01-22"
+    },
+    {
+      "band_number": 106,
+      "filename": "uganda_LST_daily_2022-01-23.tif",
+      "variable": "LST",
+      "date": "2022-01-23"
+    },
+    {
+      "band_number": 107,
+      "filename": "uganda_LST_daily_2022-01-24.tif",
+      "variable": "LST",
+      "date": "2022-01-24"
+    },
+    {
+      "band_number": 108,
+      "filename": "uganda_LST_daily_2022-01-25.tif",
+      "variable": "LST",
+      "date": "2022-01-25"
+    },
+    {
+      "band_number": 109,
+      "filename": "uganda_LST_daily_2022-01-26.tif",
+      "variable": "LST",
+      "date": "2022-01-26"
+    },
+    {
+      "band_number": 110,
+      "filename": "uganda_LST_daily_2022-01-27.tif",
+      "variable": "LST",
+      "date": "2022-01-27"
+    },
+    {
+      "band_number": 111,
+      "filename": "uganda_LST_daily_2022-01-28.tif",
+      "variable": "LST",
+      "date": "2022-01-28"
+    },
+    {
+      "band_number": 112,
+      "filename": "uganda_LST_daily_2022-02-05.tif",
+      "variable": "LST",
+      "date": "2022-02-05"
+    },
+    {
+      "band_number": 113,
+      "filename": "uganda_LST_daily_2022-02-06.tif",
+      "variable": "LST",
+      "date": "2022-02-06"
+    },
+    {
+      "band_number": 114,
+      "filename": "uganda_LST_daily_2022-02-07.tif",
+      "variable": "LST",
+      "date": "2022-02-07"
+    },
+    {
+      "band_number": 115,
+      "filename": "uganda_LST_daily_2022-02-08.tif",
+      "variable": "LST",
+      "date": "2022-02-08"
+    },
+    {
+      "band_number": 116,
+      "filename": "uganda_LST_daily_2022-02-09.tif",
+      "variable": "LST",
+      "date": "2022-02-09"
+    },
+    {
+      "band_number": 117,
+      "filename": "uganda_LST_daily_2022-02-12.tif",
+      "variable": "LST",
+      "date": "2022-02-12"
+    },
+    {
+      "band_number": 118,
+      "filename": "uganda_NDVI_daily_2022-01-01.tif",
+      "variable": "NDVI",
+      "date": "2022-01-01"
+    },
+    {
+      "band_number": 119,
+      "filename": "uganda_NDVI_daily_2022-01-07.tif",
+      "variable": "NDVI",
+      "date": "2022-01-07"
+    },
+    {
+      "band_number": 120,
+      "filename": "uganda_NDVI_daily_2022-01-08.tif",
+      "variable": "NDVI",
+      "date": "2022-01-08"
+    },
+    {
+      "band_number": 121,
+      "filename": "uganda_NDVI_daily_2022-01-09.tif",
+      "variable": "NDVI",
+      "date": "2022-01-09"
+    },
+    {
+      "band_number": 122,
+      "filename": "uganda_NDVI_daily_2022-01-10.tif",
+      "variable": "NDVI",
+      "date": "2022-01-10"
+    },
+    {
+      "band_number": 123,
+      "filename": "uganda_NDVI_daily_2022-01-11.tif",
+      "variable": "NDVI",
+      "date": "2022-01-11"
+    },
+    {
+      "band_number": 124,
+      "filename": "uganda_NDVI_daily_2022-01-12.tif",
+      "variable": "NDVI",
+      "date": "2022-01-12"
+    },
+    {
+      "band_number": 125,
+      "filename": "uganda_NDVI_daily_2022-01-13.tif",
+      "variable": "NDVI",
+      "date": "2022-01-13"
+    },
+    {
+      "band_number": 126,
+      "filename": "uganda_NDVI_daily_2022-01-14.tif",
+      "variable": "NDVI",
+      "date": "2022-01-14"
+    },
+    {
+      "band_number": 127,
+      "filename": "uganda_NDVI_daily_2022-01-15.tif",
+      "variable": "NDVI",
+      "date": "2022-01-15"
+    },
+    {
+      "band_number": 128,
+      "filename": "uganda_NDVI_daily_2022-01-16.tif",
+      "variable": "NDVI",
+      "date": "2022-01-16"
+    },
+    {
+      "band_number": 129,
+      "filename": "uganda_NDVI_daily_2022-01-17.tif",
+      "variable": "NDVI",
+      "date": "2022-01-17"
+    },
+    {
+      "band_number": 130,
+      "filename": "uganda_NDVI_daily_2022-01-18.tif",
+      "variable": "NDVI",
+      "date": "2022-01-18"
+    },
+    {
+      "band_number": 131,
+      "filename": "uganda_NDVI_daily_2022-01-19.tif",
+      "variable": "NDVI",
+      "date": "2022-01-19"
+    },
+    {
+      "band_number": 132,
+      "filename": "uganda_NDVI_daily_2022-01-20.tif",
+      "variable": "NDVI",
+      "date": "2022-01-20"
+    },
+    {
+      "band_number": 133,
+      "filename": "uganda_NDVI_daily_2022-01-21.tif",
+      "variable": "NDVI",
+      "date": "2022-01-21"
+    },
+    {
+      "band_number": 134,
+      "filename": "uganda_NDVI_daily_2022-01-22.tif",
+      "variable": "NDVI",
+      "date": "2022-01-22"
+    },
+    {
+      "band_number": 135,
+      "filename": "uganda_NDVI_daily_2022-01-23.tif",
+      "variable": "NDVI",
+      "date": "2022-01-23"
+    },
+    {
+      "band_number": 136,
+      "filename": "uganda_NDVI_daily_2022-01-24.tif",
+      "variable": "NDVI",
+      "date": "2022-01-24"
+    },
+    {
+      "band_number": 137,
+      "filename": "uganda_NDVI_daily_2022-01-25.tif",
+      "variable": "NDVI",
+      "date": "2022-01-25"
+    },
+    {
+      "band_number": 138,
+      "filename": "uganda_NDVI_daily_2022-01-26.tif",
+      "variable": "NDVI",
+      "date": "2022-01-26"
+    },
+    {
+      "band_number": 139,
+      "filename": "uganda_NDVI_daily_2022-01-27.tif",
+      "variable": "NDVI",
+      "date": "2022-01-27"
+    },
+    {
+      "band_number": 140,
+      "filename": "uganda_NDVI_daily_2022-01-28.tif",
+      "variable": "NDVI",
+      "date": "2022-01-28"
+    },
+    {
+      "band_number": 141,
+      "filename": "uganda_NDVI_daily_2022-01-29.tif",
+      "variable": "NDVI",
+      "date": "2022-01-29"
+    },
+    {
+      "band_number": 142,
+      "filename": "uganda_NDVI_daily_2022-01-30.tif",
+      "variable": "NDVI",
+      "date": "2022-01-30"
+    },
+    {
+      "band_number": 143,
+      "filename": "uganda_RH_daily_2022-01-01.tif",
+      "variable": "RH",
+      "date": "2022-01-01"
+    },
+    {
+      "band_number": 144,
+      "filename": "uganda_RH_daily_2022-01-02.tif",
+      "variable": "RH",
+      "date": "2022-01-02"
+    },
+    {
+      "band_number": 145,
+      "filename": "uganda_RH_daily_2022-01-03.tif",
+      "variable": "RH",
+      "date": "2022-01-03"
+    },
+    {
+      "band_number": 146,
+      "filename": "uganda_RH_daily_2022-01-04.tif",
+      "variable": "RH",
+      "date": "2022-01-04"
+    },
+    {
+      "band_number": 147,
+      "filename": "uganda_RH_daily_2022-01-05.tif",
+      "variable": "RH",
+      "date": "2022-01-05"
+    },
+    {
+      "band_number": 148,
+      "filename": "uganda_RH_daily_2022-01-06.tif",
+      "variable": "RH",
+      "date": "2022-01-06"
+    },
+    {
+      "band_number": 149,
+      "filename": "uganda_RH_daily_2022-01-07.tif",
+      "variable": "RH",
+      "date": "2022-01-07"
+    },
+    {
+      "band_number": 150,
+      "filename": "uganda_RH_daily_2022-01-08.tif",
+      "variable": "RH",
+      "date": "2022-01-08"
+    },
+    {
+      "band_number": 151,
+      "filename": "uganda_RH_daily_2022-01-09.tif",
+      "variable": "RH",
+      "date": "2022-01-09"
+    },
+    {
+      "band_number": 152,
+      "filename": "uganda_RH_daily_2022-01-10.tif",
+      "variable": "RH",
+      "date": "2022-01-10"
+    },
+    {
+      "band_number": 153,
+      "filename": "uganda_RH_daily_2022-01-11.tif",
+      "variable": "RH",
+      "date": "2022-01-11"
+    },
+    {
+      "band_number": 154,
+      "filename": "uganda_RH_daily_2022-01-12.tif",
+      "variable": "RH",
+      "date": "2022-01-12"
+    },
+    {
+      "band_number": 155,
+      "filename": "uganda_RH_daily_2022-01-13.tif",
+      "variable": "RH",
+      "date": "2022-01-13"
+    },
+    {
+      "band_number": 156,
+      "filename": "uganda_RH_daily_2022-01-14.tif",
+      "variable": "RH",
+      "date": "2022-01-14"
+    },
+    {
+      "band_number": 157,
+      "filename": "uganda_RH_daily_2022-01-15.tif",
+      "variable": "RH",
+      "date": "2022-01-15"
+    },
+    {
+      "band_number": 158,
+      "filename": "uganda_RH_daily_2022-01-16.tif",
+      "variable": "RH",
+      "date": "2022-01-16"
+    },
+    {
+      "band_number": 159,
+      "filename": "uganda_RH_daily_2022-01-17.tif",
+      "variable": "RH",
+      "date": "2022-01-17"
+    },
+    {
+      "band_number": 160,
+      "filename": "uganda_RH_daily_2022-01-18.tif",
+      "variable": "RH",
+      "date": "2022-01-18"
+    },
+    {
+      "band_number": 161,
+      "filename": "uganda_RH_daily_2022-01-19.tif",
+      "variable": "RH",
+      "date": "2022-01-19"
+    },
+    {
+      "band_number": 162,
+      "filename": "uganda_RH_daily_2022-01-20.tif",
+      "variable": "RH",
+      "date": "2022-01-20"
+    },
+    {
+      "band_number": 163,
+      "filename": "uganda_RH_daily_2022-01-21.tif",
+      "variable": "RH",
+      "date": "2022-01-21"
+    },
+    {
+      "band_number": 164,
+      "filename": "uganda_RH_daily_2022-01-22.tif",
+      "variable": "RH",
+      "date": "2022-01-22"
+    },
+    {
+      "band_number": 165,
+      "filename": "uganda_RH_daily_2022-01-23.tif",
+      "variable": "RH",
+      "date": "2022-01-23"
+    },
+    {
+      "band_number": 166,
+      "filename": "uganda_RH_daily_2022-01-24.tif",
+      "variable": "RH",
+      "date": "2022-01-24"
+    },
+    {
+      "band_number": 167,
+      "filename": "uganda_RH_daily_2022-01-25.tif",
+      "variable": "RH",
+      "date": "2022-01-25"
+    },
+    {
+      "band_number": 168,
+      "filename": "uganda_RH_daily_2022-01-26.tif",
+      "variable": "RH",
+      "date": "2022-01-26"
+    },
+    {
+      "band_number": 169,
+      "filename": "uganda_RH_daily_2022-01-27.tif",
+      "variable": "RH",
+      "date": "2022-01-27"
+    },
+    {
+      "band_number": 170,
+      "filename": "uganda_RH_daily_2022-01-28.tif",
+      "variable": "RH",
+      "date": "2022-01-28"
+    },
+    {
+      "band_number": 171,
+      "filename": "uganda_RH_daily_2022-01-29.tif",
+      "variable": "RH",
+      "date": "2022-01-29"
+    },
+    {
+      "band_number": 172,
+      "filename": "uganda_RH_daily_2022-01-30.tif",
+      "variable": "RH",
+      "date": "2022-01-30"
+    },
+    {
+      "band_number": 173,
+      "filename": "uganda_T2M_daily_2022-01-01.tif",
+      "variable": "T2M",
+      "date": "2022-01-01"
+    },
+    {
+      "band_number": 174,
+      "filename": "uganda_T2M_daily_2022-01-02.tif",
+      "variable": "T2M",
+      "date": "2022-01-02"
+    },
+    {
+      "band_number": 175,
+      "filename": "uganda_T2M_daily_2022-01-03.tif",
+      "variable": "T2M",
+      "date": "2022-01-03"
+    },
+    {
+      "band_number": 176,
+      "filename": "uganda_T2M_daily_2022-01-04.tif",
+      "variable": "T2M",
+      "date": "2022-01-04"
+    },
+    {
+      "band_number": 177,
+      "filename": "uganda_T2M_daily_2022-01-05.tif",
+      "variable": "T2M",
+      "date": "2022-01-05"
+    },
+    {
+      "band_number": 178,
+      "filename": "uganda_T2M_daily_2022-01-06.tif",
+      "variable": "T2M",
+      "date": "2022-01-06"
+    },
+    {
+      "band_number": 179,
+      "filename": "uganda_T2M_daily_2022-01-07.tif",
+      "variable": "T2M",
+      "date": "2022-01-07"
+    },
+    {
+      "band_number": 180,
+      "filename": "uganda_T2M_daily_2022-01-08.tif",
+      "variable": "T2M",
+      "date": "2022-01-08"
+    },
+    {
+      "band_number": 181,
+      "filename": "uganda_T2M_daily_2022-01-09.tif",
+      "variable": "T2M",
+      "date": "2022-01-09"
+    },
+    {
+      "band_number": 182,
+      "filename": "uganda_T2M_daily_2022-01-10.tif",
+      "variable": "T2M",
+      "date": "2022-01-10"
+    },
+    {
+      "band_number": 183,
+      "filename": "uganda_T2M_daily_2022-01-11.tif",
+      "variable": "T2M",
+      "date": "2022-01-11"
+    },
+    {
+      "band_number": 184,
+      "filename": "uganda_T2M_daily_2022-01-12.tif",
+      "variable": "T2M",
+      "date": "2022-01-12"
+    },
+    {
+      "band_number": 185,
+      "filename": "uganda_T2M_daily_2022-01-13.tif",
+      "variable": "T2M",
+      "date": "2022-01-13"
+    },
+    {
+      "band_number": 186,
+      "filename": "uganda_T2M_daily_2022-01-14.tif",
+      "variable": "T2M",
+      "date": "2022-01-14"
+    },
+    {
+      "band_number": 187,
+      "filename": "uganda_T2M_daily_2022-01-15.tif",
+      "variable": "T2M",
+      "date": "2022-01-15"
+    },
+    {
+      "band_number": 188,
+      "filename": "uganda_T2M_daily_2022-01-16.tif",
+      "variable": "T2M",
+      "date": "2022-01-16"
+    },
+    {
+      "band_number": 189,
+      "filename": "uganda_T2M_daily_2022-01-17.tif",
+      "variable": "T2M",
+      "date": "2022-01-17"
+    },
+    {
+      "band_number": 190,
+      "filename": "uganda_T2M_daily_2022-01-18.tif",
+      "variable": "T2M",
+      "date": "2022-01-18"
+    },
+    {
+      "band_number": 191,
+      "filename": "uganda_T2M_daily_2022-01-19.tif",
+      "variable": "T2M",
+      "date": "2022-01-19"
+    },
+    {
+      "band_number": 192,
+      "filename": "uganda_T2M_daily_2022-01-20.tif",
+      "variable": "T2M",
+      "date": "2022-01-20"
+    },
+    {
+      "band_number": 193,
+      "filename": "uganda_T2M_daily_2022-01-21.tif",
+      "variable": "T2M",
+      "date": "2022-01-21"
+    },
+    {
+      "band_number": 194,
+      "filename": "uganda_T2M_daily_2022-01-22.tif",
+      "variable": "T2M",
+      "date": "2022-01-22"
+    },
+    {
+      "band_number": 195,
+      "filename": "uganda_T2M_daily_2022-01-23.tif",
+      "variable": "T2M",
+      "date": "2022-01-23"
+    },
+    {
+      "band_number": 196,
+      "filename": "uganda_T2M_daily_2022-01-24.tif",
+      "variable": "T2M",
+      "date": "2022-01-24"
+    },
+    {
+      "band_number": 197,
+      "filename": "uganda_T2M_daily_2022-01-25.tif",
+      "variable": "T2M",
+      "date": "2022-01-25"
+    },
+    {
+      "band_number": 198,
+      "filename": "uganda_T2M_daily_2022-01-26.tif",
+      "variable": "T2M",
+      "date": "2022-01-26"
+    },
+    {
+      "band_number": 199,
+      "filename": "uganda_T2M_daily_2022-01-27.tif",
+      "variable": "T2M",
+      "date": "2022-01-27"
+    },
+    {
+      "band_number": 200,
+      "filename": "uganda_T2M_daily_2022-01-28.tif",
+      "variable": "T2M",
+      "date": "2022-01-28"
+    },
+    {
+      "band_number": 201,
+      "filename": "uganda_T2M_daily_2022-01-29.tif",
+      "variable": "T2M",
+      "date": "2022-01-29"
+    },
+    {
+      "band_number": 202,
+      "filename": "uganda_T2M_daily_2022-01-30.tif",
+      "variable": "T2M",
+      "date": "2022-01-30"
+    },
+    {
+      "band_number": 203,
+      "filename": "uganda_TP_daily_2022-01-01.tif",
+      "variable": "TP",
+      "date": "2022-01-01"
+    },
+    {
+      "band_number": 204,
+      "filename": "uganda_TP_daily_2022-01-02.tif",
+      "variable": "TP",
+      "date": "2022-01-02"
+    },
+    {
+      "band_number": 205,
+      "filename": "uganda_TP_daily_2022-01-03.tif",
+      "variable": "TP",
+      "date": "2022-01-03"
+    },
+    {
+      "band_number": 206,
+      "filename": "uganda_TP_daily_2022-01-04.tif",
+      "variable": "TP",
+      "date": "2022-01-04"
+    },
+    {
+      "band_number": 207,
+      "filename": "uganda_TP_daily_2022-01-05.tif",
+      "variable": "TP",
+      "date": "2022-01-05"
+    },
+    {
+      "band_number": 208,
+      "filename": "uganda_TP_daily_2022-01-06.tif",
+      "variable": "TP",
+      "date": "2022-01-06"
+    },
+    {
+      "band_number": 209,
+      "filename": "uganda_TP_daily_2022-01-07.tif",
+      "variable": "TP",
+      "date": "2022-01-07"
+    },
+    {
+      "band_number": 210,
+      "filename": "uganda_TP_daily_2022-01-08.tif",
+      "variable": "TP",
+      "date": "2022-01-08"
+    },
+    {
+      "band_number": 211,
+      "filename": "uganda_TP_daily_2022-01-09.tif",
+      "variable": "TP",
+      "date": "2022-01-09"
+    },
+    {
+      "band_number": 212,
+      "filename": "uganda_TP_daily_2022-01-10.tif",
+      "variable": "TP",
+      "date": "2022-01-10"
+    },
+    {
+      "band_number": 213,
+      "filename": "uganda_TP_daily_2022-01-11.tif",
+      "variable": "TP",
+      "date": "2022-01-11"
+    },
+    {
+      "band_number": 214,
+      "filename": "uganda_TP_daily_2022-01-12.tif",
+      "variable": "TP",
+      "date": "2022-01-12"
+    },
+    {
+      "band_number": 215,
+      "filename": "uganda_TP_daily_2022-01-14.tif",
+      "variable": "TP",
+      "date": "2022-01-14"
+    },
+    {
+      "band_number": 216,
+      "filename": "uganda_TP_daily_2022-01-15.tif",
+      "variable": "TP",
+      "date": "2022-01-15"
+    },
+    {
+      "band_number": 217,
+      "filename": "uganda_TP_daily_2022-01-16.tif",
+      "variable": "TP",
+      "date": "2022-01-16"
+    },
+    {
+      "band_number": 218,
+      "filename": "uganda_TP_daily_2022-01-17.tif",
+      "variable": "TP",
+      "date": "2022-01-17"
+    },
+    {
+      "band_number": 219,
+      "filename": "uganda_TP_daily_2022-01-18.tif",
+      "variable": "TP",
+      "date": "2022-01-18"
+    },
+    {
+      "band_number": 220,
+      "filename": "uganda_TP_daily_2022-01-19.tif",
+      "variable": "TP",
+      "date": "2022-01-19"
+    },
+    {
+      "band_number": 221,
+      "filename": "uganda_TP_daily_2022-01-20.tif",
+      "variable": "TP",
+      "date": "2022-01-20"
+    },
+    {
+      "band_number": 222,
+      "filename": "uganda_TP_daily_2022-01-21.tif",
+      "variable": "TP",
+      "date": "2022-01-21"
+    },
+    {
+      "band_number": 223,
+      "filename": "uganda_TP_daily_2022-01-22.tif",
+      "variable": "TP",
+      "date": "2022-01-22"
+    },
+    {
+      "band_number": 224,
+      "filename": "uganda_TP_daily_2022-01-23.tif",
+      "variable": "TP",
+      "date": "2022-01-23"
+    },
+    {
+      "band_number": 225,
+      "filename": "uganda_TP_daily_2022-01-24.tif",
+      "variable": "TP",
+      "date": "2022-01-24"
+    },
+    {
+      "band_number": 226,
+      "filename": "uganda_TP_daily_2022-01-25.tif",
+      "variable": "TP",
+      "date": "2022-01-25"
+    },
+    {
+      "band_number": 227,
+      "filename": "uganda_TP_daily_2022-01-26.tif",
+      "variable": "TP",
+      "date": "2022-01-26"
+    },
+    {
+      "band_number": 228,
+      "filename": "uganda_TP_daily_2022-01-27.tif",
+      "variable": "TP",
+      "date": "2022-01-27"
+    },
+    {
+      "band_number": 229,
+      "filename": "uganda_TP_daily_2022-01-28.tif",
+      "variable": "TP",
+      "date": "2022-01-28"
+    },
+    {
+      "band_number": 230,
+      "filename": "uganda_TP_daily_2022-01-29.tif",
+      "variable": "TP",
+      "date": "2022-01-29"
+    },
+    {
+      "band_number": 231,
+      "filename": "uganda_TP_daily_2022-01-30.tif",
+      "variable": "TP",
+      "date": "2022-01-30"
+    },
+    {
+      "band_number": 232,
+      "filename": "uganda_WRND_daily_2022-01-01.tif",
+      "variable": "WRND",
+      "date": "2022-01-01"
+    },
+    {
+      "band_number": 233,
+      "filename": "uganda_WRND_daily_2022-01-02.tif",
+      "variable": "WRND",
+      "date": "2022-01-02"
+    },
+    {
+      "band_number": 234,
+      "filename": "uganda_WRND_daily_2022-01-03.tif",
+      "variable": "WRND",
+      "date": "2022-01-03"
+    },
+    {
+      "band_number": 235,
+      "filename": "uganda_WRND_daily_2022-01-04.tif",
+      "variable": "WRND",
+      "date": "2022-01-04"
+    },
+    {
+      "band_number": 236,
+      "filename": "uganda_WRND_daily_2022-01-05.tif",
+      "variable": "WRND",
+      "date": "2022-01-05"
+    },
+    {
+      "band_number": 237,
+      "filename": "uganda_WRND_daily_2022-01-06.tif",
+      "variable": "WRND",
+      "date": "2022-01-06"
+    },
+    {
+      "band_number": 238,
+      "filename": "uganda_WRND_daily_2022-01-07.tif",
+      "variable": "WRND",
+      "date": "2022-01-07"
+    },
+    {
+      "band_number": 239,
+      "filename": "uganda_WRND_daily_2022-01-08.tif",
+      "variable": "WRND",
+      "date": "2022-01-08"
+    },
+    {
+      "band_number": 240,
+      "filename": "uganda_WRND_daily_2022-01-09.tif",
+      "variable": "WRND",
+      "date": "2022-01-09"
+    },
+    {
+      "band_number": 241,
+      "filename": "uganda_WRND_daily_2022-01-10.tif",
+      "variable": "WRND",
+      "date": "2022-01-10"
+    },
+    {
+      "band_number": 242,
+      "filename": "uganda_WRND_daily_2022-01-11.tif",
+      "variable": "WRND",
+      "date": "2022-01-11"
+    },
+    {
+      "band_number": 243,
+      "filename": "uganda_WRND_daily_2022-01-12.tif",
+      "variable": "WRND",
+      "date": "2022-01-12"
+    },
+    {
+      "band_number": 244,
+      "filename": "uganda_WRND_daily_2022-01-13.tif",
+      "variable": "WRND",
+      "date": "2022-01-13"
+    },
+    {
+      "band_number": 245,
+      "filename": "uganda_WRND_daily_2022-01-14.tif",
+      "variable": "WRND",
+      "date": "2022-01-14"
+    },
+    {
+      "band_number": 246,
+      "filename": "uganda_WRND_daily_2022-01-15.tif",
+      "variable": "WRND",
+      "date": "2022-01-15"
+    },
+    {
+      "band_number": 247,
+      "filename": "uganda_WRND_daily_2022-01-16.tif",
+      "variable": "WRND",
+      "date": "2022-01-16"
+    },
+    {
+      "band_number": 248,
+      "filename": "uganda_WRND_daily_2022-01-17.tif",
+      "variable": "WRND",
+      "date": "2022-01-17"
+    },
+    {
+      "band_number": 249,
+      "filename": "uganda_WRND_daily_2022-01-18.tif",
+      "variable": "WRND",
+      "date": "2022-01-18"
+    },
+    {
+      "band_number": 250,
+      "filename": "uganda_WRND_daily_2022-01-19.tif",
+      "variable": "WRND",
+      "date": "2022-01-19"
+    },
+    {
+      "band_number": 251,
+      "filename": "uganda_WRND_daily_2022-01-20.tif",
+      "variable": "WRND",
+      "date": "2022-01-20"
+    },
+    {
+      "band_number": 252,
+      "filename": "uganda_WRND_daily_2022-01-21.tif",
+      "variable": "WRND",
+      "date": "2022-01-21"
+    },
+    {
+      "band_number": 253,
+      "filename": "uganda_WRND_daily_2022-01-22.tif",
+      "variable": "WRND",
+      "date": "2022-01-22"
+    },
+    {
+      "band_number": 254,
+      "filename": "uganda_WRND_daily_2022-01-23.tif",
+      "variable": "WRND",
+      "date": "2022-01-23"
+    },
+    {
+      "band_number": 255,
+      "filename": "uganda_WRND_daily_2022-01-24.tif",
+      "variable": "WRND",
+      "date": "2022-01-24"
+    },
+    {
+      "band_number": 256,
+      "filename": "uganda_WRND_daily_2022-01-25.tif",
+      "variable": "WRND",
+      "date": "2022-01-25"
+    },
+    {
+      "band_number": 257,
+      "filename": "uganda_WRND_daily_2022-01-26.tif",
+      "variable": "WRND",
+      "date": "2022-01-26"
+    },
+    {
+      "band_number": 258,
+      "filename": "uganda_WRND_daily_2022-01-27.tif",
+      "variable": "WRND",
+      "date": "2022-01-27"
+    },
+    {
+      "band_number": 259,
+      "filename": "uganda_WRND_daily_2022-01-28.tif",
+      "variable": "WRND",
+      "date": "2022-01-28"
+    },
+    {
+      "band_number": 260,
+      "filename": "uganda_WRND_daily_2022-01-29.tif",
+      "variable": "WRND",
+      "date": "2022-01-29"
+    },
+    {
+      "band_number": 261,
+      "filename": "uganda_WRND_daily_2022-01-30.tif",
+      "variable": "WRND",
+      "date": "2022-01-30"
+    },
+    {
+      "band_number": 262,
+      "filename": "uganda_no2_daily_2022-01-01.tif",
+      "variable": "no2",
+      "date": "2022-01-01"
+    },
+    {
+      "band_number": 263,
+      "filename": "uganda_no2_daily_2022-01-02.tif",
+      "variable": "no2",
+      "date": "2022-01-02"
+    },
+    {
+      "band_number": 264,
+      "filename": "uganda_no2_daily_2022-01-03.tif",
+      "variable": "no2",
+      "date": "2022-01-03"
+    },
+    {
+      "band_number": 265,
+      "filename": "uganda_no2_daily_2022-01-04.tif",
+      "variable": "no2",
+      "date": "2022-01-04"
+    },
+    {
+      "band_number": 266,
+      "filename": "uganda_no2_daily_2022-01-05.tif",
+      "variable": "no2",
+      "date": "2022-01-05"
+    },
+    {
+      "band_number": 267,
+      "filename": "uganda_no2_daily_2022-01-06.tif",
+      "variable": "no2",
+      "date": "2022-01-06"
+    },
+    {
+      "band_number": 268,
+      "filename": "uganda_no2_daily_2022-01-07.tif",
+      "variable": "no2",
+      "date": "2022-01-07"
+    },
+    {
+      "band_number": 269,
+      "filename": "uganda_no2_daily_2022-01-08.tif",
+      "variable": "no2",
+      "date": "2022-01-08"
+    },
+    {
+      "band_number": 270,
+      "filename": "uganda_no2_daily_2022-01-09.tif",
+      "variable": "no2",
+      "date": "2022-01-09"
+    },
+    {
+      "band_number": 271,
+      "filename": "uganda_no2_daily_2022-01-10.tif",
+      "variable": "no2",
+      "date": "2022-01-10"
+    },
+    {
+      "band_number": 272,
+      "filename": "uganda_no2_daily_2022-01-11.tif",
+      "variable": "no2",
+      "date": "2022-01-11"
+    },
+    {
+      "band_number": 273,
+      "filename": "uganda_no2_daily_2022-01-12.tif",
+      "variable": "no2",
+      "date": "2022-01-12"
+    },
+    {
+      "band_number": 274,
+      "filename": "uganda_no2_daily_2022-01-13.tif",
+      "variable": "no2",
+      "date": "2022-01-13"
+    },
+    {
+      "band_number": 275,
+      "filename": "uganda_no2_daily_2022-01-14.tif",
+      "variable": "no2",
+      "date": "2022-01-14"
+    },
+    {
+      "band_number": 276,
+      "filename": "uganda_no2_daily_2022-01-15.tif",
+      "variable": "no2",
+      "date": "2022-01-15"
+    },
+    {
+      "band_number": 277,
+      "filename": "uganda_no2_daily_2022-01-16.tif",
+      "variable": "no2",
+      "date": "2022-01-16"
+    },
+    {
+      "band_number": 278,
+      "filename": "uganda_no2_daily_2022-01-17.tif",
+      "variable": "no2",
+      "date": "2022-01-17"
+    },
+    {
+      "band_number": 279,
+      "filename": "uganda_no2_daily_2022-01-18.tif",
+      "variable": "no2",
+      "date": "2022-01-18"
+    },
+    {
+      "band_number": 280,
+      "filename": "uganda_no2_daily_2022-01-19.tif",
+      "variable": "no2",
+      "date": "2022-01-19"
+    },
+    {
+      "band_number": 281,
+      "filename": "uganda_no2_daily_2022-01-20.tif",
+      "variable": "no2",
+      "date": "2022-01-20"
+    },
+    {
+      "band_number": 282,
+      "filename": "uganda_no2_daily_2022-01-21.tif",
+      "variable": "no2",
+      "date": "2022-01-21"
+    },
+    {
+      "band_number": 283,
+      "filename": "uganda_no2_daily_2022-01-22.tif",
+      "variable": "no2",
+      "date": "2022-01-22"
+    },
+    {
+      "band_number": 284,
+      "filename": "uganda_no2_daily_2022-01-23.tif",
+      "variable": "no2",
+      "date": "2022-01-23"
+    },
+    {
+      "band_number": 285,
+      "filename": "uganda_no2_daily_2022-01-24.tif",
+      "variable": "no2",
+      "date": "2022-01-24"
+    },
+    {
+      "band_number": 286,
+      "filename": "uganda_no2_daily_2022-01-25.tif",
+      "variable": "no2",
+      "date": "2022-01-25"
+    },
+    {
+      "band_number": 287,
+      "filename": "uganda_no2_daily_2022-01-26.tif",
+      "variable": "no2",
+      "date": "2022-01-26"
+    },
+    {
+      "band_number": 288,
+      "filename": "uganda_no2_daily_2022-01-27.tif",
+      "variable": "no2",
+      "date": "2022-01-27"
+    },
+    {
+      "band_number": 289,
+      "filename": "uganda_no2_daily_2022-01-28.tif",
+      "variable": "no2",
+      "date": "2022-01-28"
+    },
+    {
+      "band_number": 290,
+      "filename": "uganda_no2_daily_2022-01-29.tif",
+      "variable": "no2",
+      "date": "2022-01-29"
+    },
+    {
+      "band_number": 291,
+      "filename": "uganda_no2_daily_2022-01-30.tif",
+      "variable": "no2",
+      "date": "2022-01-30"
+    },
+    {
+      "band_number": 292,
+      "filename": "uganda_pm25_daily_2022-01-01.tif",
+      "variable": "pm25",
+      "date": "2022-01-01"
+    },
+    {
+      "band_number": 293,
+      "filename": "uganda_pm25_daily_2022-01-02.tif",
+      "variable": "pm25",
+      "date": "2022-01-02"
+    },
+    {
+      "band_number": 294,
+      "filename": "uganda_pm25_daily_2022-01-03.tif",
+      "variable": "pm25",
+      "date": "2022-01-03"
+    },
+    {
+      "band_number": 295,
+      "filename": "uganda_pm25_daily_2022-01-04.tif",
+      "variable": "pm25",
+      "date": "2022-01-04"
+    },
+    {
+      "band_number": 296,
+      "filename": "uganda_pm25_daily_2022-01-05.tif",
+      "variable": "pm25",
+      "date": "2022-01-05"
+    },
+    {
+      "band_number": 297,
+      "filename": "uganda_pm25_daily_2022-01-06.tif",
+      "variable": "pm25",
+      "date": "2022-01-06"
+    },
+    {
+      "band_number": 298,
+      "filename": "uganda_pm25_daily_2022-01-07.tif",
+      "variable": "pm25",
+      "date": "2022-01-07"
+    },
+    {
+      "band_number": 299,
+      "filename": "uganda_pm25_daily_2022-01-08.tif",
+      "variable": "pm25",
+      "date": "2022-01-08"
+    },
+    {
+      "band_number": 300,
+      "filename": "uganda_pm25_daily_2022-01-09.tif",
+      "variable": "pm25",
+      "date": "2022-01-09"
+    },
+    {
+      "band_number": 301,
+      "filename": "uganda_pm25_daily_2022-01-10.tif",
+      "variable": "pm25",
+      "date": "2022-01-10"
+    },
+    {
+      "band_number": 302,
+      "filename": "uganda_pm25_daily_2022-01-11.tif",
+      "variable": "pm25",
+      "date": "2022-01-11"
+    },
+    {
+      "band_number": 303,
+      "filename": "uganda_pm25_daily_2022-01-12.tif",
+      "variable": "pm25",
+      "date": "2022-01-12"
+    },
+    {
+      "band_number": 304,
+      "filename": "uganda_pm25_daily_2022-01-13.tif",
+      "variable": "pm25",
+      "date": "2022-01-13"
+    },
+    {
+      "band_number": 305,
+      "filename": "uganda_pm25_daily_2022-01-14.tif",
+      "variable": "pm25",
+      "date": "2022-01-14"
+    },
+    {
+      "band_number": 306,
+      "filename": "uganda_pm25_daily_2022-01-15.tif",
+      "variable": "pm25",
+      "date": "2022-01-15"
+    },
+    {
+      "band_number": 307,
+      "filename": "uganda_pm25_daily_2022-01-16.tif",
+      "variable": "pm25",
+      "date": "2022-01-16"
+    },
+    {
+      "band_number": 308,
+      "filename": "uganda_pm25_daily_2022-01-17.tif",
+      "variable": "pm25",
+      "date": "2022-01-17"
+    },
+    {
+      "band_number": 309,
+      "filename": "uganda_pm25_daily_2022-01-18.tif",
+      "variable": "pm25",
+      "date": "2022-01-18"
+    },
+    {
+      "band_number": 310,
+      "filename": "uganda_pm25_daily_2022-01-19.tif",
+      "variable": "pm25",
+      "date": "2022-01-19"
+    },
+    {
+      "band_number": 311,
+      "filename": "uganda_pm25_daily_2022-01-20.tif",
+      "variable": "pm25",
+      "date": "2022-01-20"
+    },
+    {
+      "band_number": 312,
+      "filename": "uganda_pm25_daily_2022-01-21.tif",
+      "variable": "pm25",
+      "date": "2022-01-21"
+    },
+    {
+      "band_number": 313,
+      "filename": "uganda_pm25_daily_2022-01-22.tif",
+      "variable": "pm25",
+      "date": "2022-01-22"
+    },
+    {
+      "band_number": 314,
+      "filename": "uganda_pm25_daily_2022-01-23.tif",
+      "variable": "pm25",
+      "date": "2022-01-23"
+    },
+    {
+      "band_number": 315,
+      "filename": "uganda_pm25_daily_2022-01-24.tif",
+      "variable": "pm25",
+      "date": "2022-01-24"
+    },
+    {
+      "band_number": 316,
+      "filename": "uganda_pm25_daily_2022-01-25.tif",
+      "variable": "pm25",
+      "date": "2022-01-25"
+    },
+    {
+      "band_number": 317,
+      "filename": "uganda_pm25_daily_2022-01-26.tif",
+      "variable": "pm25",
+      "date": "2022-01-26"
+    },
+    {
+      "band_number": 318,
+      "filename": "uganda_pm25_daily_2022-01-27.tif",
+      "variable": "pm25",
+      "date": "2022-01-27"
+    },
+    {
+      "band_number": 319,
+      "filename": "uganda_pm25_daily_2022-01-28.tif",
+      "variable": "pm25",
+      "date": "2022-01-28"
+    },
+    {
+      "band_number": 320,
+      "filename": "uganda_pm25_daily_2022-01-29.tif",
+      "variable": "pm25",
+      "date": "2022-01-29"
+    },
+    {
+      "band_number": 321,
+      "filename": "uganda_pm25_daily_2022-01-30.tif",
+      "variable": "pm25",
+      "date": "2022-01-30"
+    }
+  ],
+  "creation_date": "2025-11-28T06:54:26.908330"
+}

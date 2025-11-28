@@ -1,0 +1,65 @@
+# Docker Compose for Docker Hub Images
+version: '3.8'
+
+services:
+  uganda-spatial-web:
+    image: yourusername/cheaqi-uganda:latest  # Replace with your Docker Hub username
+    container_name: uganda-spatial-web-hub
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+      - ./scripts:/app/scripts
+    environment:
+      - PYTHONUNBUFFERED=1
+      - UGANDA_WORKFLOW=true
+    restart: unless-stopped
+    networks:
+      - uganda-network
+
+  uganda-processor:
+    image: yourusername/cheaqi-uganda:latest  # Replace with your Docker Hub username
+    container_name: uganda-processor-hub
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+      - ./scripts:/app/scripts
+    environment:
+      - PYTHONUNBUFFERED=1
+      - UGANDA_WORKFLOW=true
+    command: >
+      bash -c "
+        source activate cheaqi &&
+        echo 'Uganda spatial processor ready from Docker Hub image' &&
+        tail -f /dev/null
+      "
+    restart: unless-stopped
+    networks:
+      - uganda-network
+
+  uganda-monitor:
+    image: yourusername/cheaqi-uganda:latest  # Replace with your Docker Hub username
+    container_name: uganda-monitor-hub
+    ports:
+      - "8890:8890"
+    volumes:
+      - ./outputs:/app/outputs:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+      - MONITOR_MODE=true
+    command: >
+      bash -c "
+        source activate cheaqi &&
+        echo 'Starting Uganda Monitor from Docker Hub image...' &&
+        cd /app &&
+        python monitor.py
+      "
+    restart: unless-stopped
+    networks:
+      - uganda-network
+
+networks:
+  uganda-network:
+    driver: bridge

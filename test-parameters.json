@@ -1,0 +1,26 @@
+{
+  "input_csv": {
+    "class": "File",
+    "path": "data/Uganda_Daily.csv"
+  },
+  "output_dir": "outputs/test_run",
+  "interpolation_method": "kriging",
+  "grid_resolution": 0.01,
+  "coordinate_columns": {
+    "latitude": "latitude", 
+    "longitude": "longitude"
+  },
+  "variables": [
+    "NDVI",
+    "pm25", 
+    "no2",
+    "T2M",
+    "RH"
+  ],
+  "date_range": {
+    "start_date": "2022-01-01",
+    "end_date": "2022-01-31"
+  },
+  "create_geostacks": true,
+  "generate_visualizations": true
+}

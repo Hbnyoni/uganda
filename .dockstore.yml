@@ -1,0 +1,32 @@
+dockstore_version: 1.2
+workflows:
+  - name: uganda-basic-workflow
+    subclass: NEXTFLOW
+    primaryDescriptorPath: /uganda_workflow.nf
+    testParameterFiles:
+      - /test-parameters.json
+    authors:
+      - name: CHEAQI Team
+        email: cheaqi@example.com
+    description: "Basic spatial interpolation workflow for Uganda environmental data using Nextflow and Docker"
+    
+  - name: uganda-enhanced-workflow  
+    subclass: NEXTFLOW
+    primaryDescriptorPath: /uganda_enhanced_workflow.nf
+    testParameterFiles:
+      - /test-parameters.json
+    authors:
+      - name: CHEAQI Team
+        email: cheaqi@example.com
+    description: "Enhanced daily spatial interpolation with geostack creation for Uganda environmental indicators"
+
+tools:
+  - name: cheaqi-uganda-container
+    toolclass: CommandLineTool
+    primaryDescriptorPath: /Dockerfile
+    testParameterFiles:
+      - /test-parameters.json
+    authors:
+      - name: CHEAQI Team
+        email: cheaqi@example.com
+    description: "Docker container for CHEAQI Uganda spatial analysis with all dependencies"

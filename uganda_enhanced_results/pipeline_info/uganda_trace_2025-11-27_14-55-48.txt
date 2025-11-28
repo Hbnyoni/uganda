@@ -1,0 +1,2 @@
+task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
+1	f2/292a48	13045	UGANDA_DATA_PREPARATION (Uganda data prep)	FAILED	127	2025-11-27 14:55:57.116	213ms	175ms	-	-	-	-	-

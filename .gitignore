@@ -39,13 +39,7 @@ venv.bak/
 # Conda environments
 environment.lock.yml
 
-# Large output files (keep smaller examples)
-outputs/uganda_enhanced_analysis/
-outputs/*.tif
-outputs/*.png
-outputs/**/*.tif
-outputs/**/*.png
-uganda_enhanced_results/
+# Nextflow work files (keep results, exclude temporary files)
 work/
 .nextflow/
 .nextflow.log*
